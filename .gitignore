@@ -5,6 +5,11 @@
 *.war
 *.ear
 
-# Netbeans Files#
-nbproject/
-/build/
+# Ant specific #
+dist/
+build/
+
+# Netbeans Files #
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
