@@ -8,6 +8,7 @@
 # Ant specific #
 dist/
 build/
+build.xml
 
 # Netbeans Files #
 nbproject/*
