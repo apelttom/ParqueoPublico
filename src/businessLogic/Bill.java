@@ -16,10 +16,60 @@
 
 package businessLogic;
 
+import java.util.*;
+
 /**
  *
  * @author Adrian Rodriguez Villalobos
  */
 public class Bill {
-
+    Date date;
+    int billNumber;
+    float cost;
+    
+    // Constructor
+    public Bill()
+    {
+        
+    }
+    
+    // getters and setters
+    Date getDate()
+    {
+        return this.date;
+    }
+    
+    void setDate(int nYear, int nMonth, int nDay, int nHour, int nMinute)
+    {
+        this.date = new Date(nYear, nMonth, nDay, nHour, nMinute);
+    }
+    
+    int getBillNumber()
+    {
+        return this.billNumber;
+    }
+    
+    void setNillNumber(int nBillNumber)
+    {
+        this.billNumber = nBillNumber;
+    }
+    
+    float getCost()
+    {
+        return this.cost;
+    }
+    
+    void setCost(float nCost)
+    {
+        this.cost = nCost;
+    }
+    
+    @Override
+    public String toString()
+    {
+        String data = "";
+        return data+"Date: "+date.toString()+"\n"+
+                    "Bill #: "+billNumber+"\n"+
+                    "Cost: "+cost;
+    }
 }

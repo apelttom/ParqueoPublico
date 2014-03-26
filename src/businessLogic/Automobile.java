@@ -29,5 +29,85 @@ public class Automobile {
     private String model;
     private Date entryTime;
     private Date exitTime;
-
+    
+    // Constructor
+    public Automobile(String pPlate, String pColor, String pBrand, String pModel)
+    {
+        this.licensePlate = pPlate;
+        this.color = pColor;
+        this.model = pModel;
+        this.entryTime = null;
+        this.exitTime = null;
+    }
+    
+    // getters and setters
+    String getLicensePlate()
+    {
+        return this.licensePlate;
+    }
+    
+    void setLicensePlate(String nLicense)
+    {
+        this.licensePlate = nLicense;
+    }
+    
+    String getColor()
+    {
+        return this.color;
+    }
+    
+    void setColor(String nColor)
+    {
+        this.color = nColor;
+    }
+    
+    String getBrand()
+    {
+        return this.brand;
+    }
+    
+    void setBrand(String nBrand)
+    {
+        this.brand = nBrand;
+    }
+    
+    String getModel()
+    {
+        return this.model;
+    }
+    
+    void setModel(String nModel)
+    {
+        this.model = nModel;
+    }
+    
+    Date getEntryTime()
+    {
+        return this.entryTime;
+    }
+    
+    void setEntryTime(int nYear, int nMonth, int nDay, int nHour, int nMinute)
+    {
+        this.entryTime = new Date(nYear, nMonth, nDay, nHour, nMinute);
+    }
+    
+    Date getExitTime()
+    {
+        return this.exitTime;
+    }
+    
+    void setExitTime(int nYear, int nMonth, int nDay, int nHour, int nMinute)
+    {
+        this.exitTime = new Date(nYear, nMonth, nDay, nHour, nMinute);
+    }
+    
+    @Override
+    public String toString()
+    {
+        String data = "";
+        return data+"Brand: "+brand+"\n"+
+                    "Model: "+model+"\n"+
+                    "Color: "+color+"\n"+
+                    "License Plate: "+licensePlate;
+    }
 }

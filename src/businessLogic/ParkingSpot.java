@@ -21,5 +21,63 @@ package businessLogic;
  * @author Adrian Rodriguez Villalobos
  */
 public class ParkingSpot {
-
+    int spotNumber;
+    String type;
+    boolean isTaken;
+    
+    // Constructor
+    public ParkingSpot(int pSpotNumber, String pType)
+    {
+        this.spotNumber = pSpotNumber;
+        this.type = pType;
+        this.isTaken = false;
+    }
+    
+    // getters and setters
+    int getSpotNumber()
+    {
+        return this.spotNumber;
+    }
+    
+    void setSpotNumber(int nSpotNumber)
+    {
+        this.spotNumber = nSpotNumber;
+    }
+    
+    String getType()
+    {
+        return this.type;
+    }
+    
+    void setType(String nType)
+    {
+        this.type = nType;
+    }
+    
+    boolean isTaken()
+    {
+        return this.isTaken;
+    }
+    
+    void setAvailability(boolean nAvailability)
+    {
+        this.isTaken = nAvailability;
+    }
+    
+    @Override
+    public String toString()
+    {
+        String data = "";
+        
+        data = data+"Spot #: "+spotNumber+"\n"+
+                    "Type: "+type+"\n";
+        if(isTaken)
+        {
+            data = data+"Availability: Taken"+"\n";
+        }else{
+            data = data+"Availability: Free"+"\n";
+        }
+        
+        return data;
+    }
 }
