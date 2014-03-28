@@ -23,14 +23,16 @@ import java.util.*;
  * @author Adrian Rodriguez Villalobos
  */
 public class Bill {
-    Date date;
-    int billNumber;
-    float cost;
+    private Date date;
+    private int billNumber;
+    private float cost;
     
     // Constructor
-    public Bill()
+    public Bill(Date pDate)
     {
-        
+        this.date = pDate;
+        this.billNumber = 0;
+        this.cost = 0;
     }
     
     // getters and setters

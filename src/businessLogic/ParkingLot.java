@@ -23,14 +23,16 @@ import java.util.*;
  * @author Adrian Rodriguez Villalobos
  */
 public class ParkingLot {
-    String name;
-    String slogan;
-    String telephone;
-    String companyID;
-    boolean isOpen;
-    Date openningTime;
-    Date closingTime;
-    float rate; /* ? */
+    private String name;
+    private String slogan;
+    private String telephone;
+    private String companyID;
+    private boolean isOpen;
+    private Date openningTime;
+    private Date closingTime;
+    private float rate; /* ? */
+    private List<Bill> parkingLotBills;
+    private int hourlyFee;
     
     // Constructor
     public ParkingLot(String pName)
@@ -43,6 +45,7 @@ public class ParkingLot {
         this.openningTime = null;
         this.closingTime = null;
         this.rate = 0;
+        this.parkingLotBills = new ArrayList<Bill>();
     }
     
     // getters and setters
@@ -118,6 +121,16 @@ public class ParkingLot {
     void setRate(float nRate)
     {
         this.rate = nRate;
+    }
+    
+    int getHourlyFee()
+    {
+        return this.hourlyFee;
+    }
+    
+    void sethourlyFee(int nFee)
+    {
+        this.hourlyFee = nFee;
     }
     
     @Override

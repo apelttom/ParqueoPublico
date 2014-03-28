@@ -21,9 +21,9 @@ package businessLogic;
  * @author Adrian Rodriguez Villalobos
  */
 public class ParkingSpot {
-    int spotNumber;
-    String type;
-    boolean isTaken;
+    private int spotNumber;
+    private String type;
+    private boolean isTaken;
     
     // Constructor
     public ParkingSpot(int pSpotNumber, String pType)
