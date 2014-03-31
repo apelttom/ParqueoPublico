@@ -14,23 +14,26 @@
  * Todos los derechos reservados.
  */
 
-package businessLogic;
+package model;
 
 /**
  *
  * @author Adrian Rodriguez Villalobos
+ * @author Tomáš Apeltauer
  */
 public class ParkingSpot {
     private int spotNumber;
-    private String type;
-    private boolean isTaken;
+    private String description;
+    private boolean occupied;
+    private Car parkedCar;
     
     // Constructor
-    public ParkingSpot(int pSpotNumber, String pType)
+    public ParkingSpot(int pSpotNumber, String description)
     {
         this.spotNumber = pSpotNumber;
-        this.type = pType;
-        this.isTaken = false;
+        this.description = description;
+        this.occupied = false;
+        this.parkedCar = null;
     }
     
     // getters and setters
@@ -43,25 +46,29 @@ public class ParkingSpot {
     {
         this.spotNumber = nSpotNumber;
     }
-    
-    String getType()
-    {
-        return this.type;
+
+    public String getDescription() {
+        return description;
     }
-    
-    void setType(String nType)
-    {
-        this.type = nType;
+
+    public void setDescription(String description) {
+        this.description = description;
     }
-    
-    boolean isTaken()
-    {
-        return this.isTaken;
+
+    public boolean isOccupied() {
+        return occupied;
     }
-    
-    void setAvailability(boolean nAvailability)
-    {
-        this.isTaken = nAvailability;
+
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
+
+    public Car getParkedCar() {
+        return parkedCar;
+    }
+
+    public void setParkedCar(Car parkedCar) {
+        this.parkedCar = parkedCar;
     }
     
     @Override
@@ -70,8 +77,8 @@ public class ParkingSpot {
         String data = "";
         
         data = data+"Spot #: "+spotNumber+"\n"+
-                    "Type: "+type+"\n";
-        if(isTaken)
+                    "Type: "+description+"\n";
+        if(occupied)
         {
             data = data+"Availability: Taken"+"\n";
         }else{

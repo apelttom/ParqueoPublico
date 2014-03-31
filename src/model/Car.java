@@ -14,15 +14,16 @@
  * Todos los derechos reservados.
  */
 
-package businessLogic;
+package model;
 
 import java.util.Date;
 
 /**
  *
  * @author Adrian Rodriguez Villalobos
+ * @author Tomáš Apeltauer
  */
-public class Automobile {
+public class Car {
     private String licensePlate;
     private String color;
     private String brand;
@@ -31,7 +32,7 @@ public class Automobile {
     private Date exitTime;
     
     // Constructor
-    public Automobile(String pPlate, String pColor, String pBrand, String pModel)
+    public Car(String pPlate, String pColor, String pBrand, String pModel)
     {
         this.licensePlate = pPlate;
         this.color = pColor;

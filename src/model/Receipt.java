@@ -14,24 +14,26 @@
  * Todos los derechos reservados.
  */
 
-package businessLogic;
+package model;
 
 import java.util.*;
 
 /**
  *
  * @author Adrian Rodriguez Villalobos
+ * @author Tomáš Apeltauer
  */
-public class Bill {
+public class Receipt {
     private Date date;
-    private int billNumber;
+    private int receiptID;
     private float cost;
+    private Car chargedCar;
     
     // Constructor
-    public Bill(Date pDate)
+    public Receipt(Date pDate)
     {
         this.date = pDate;
-        this.billNumber = 0;
+        this.receiptID = 0;
         this.cost = 0;
     }
     
@@ -46,14 +48,14 @@ public class Bill {
         this.date = new Date(nYear, nMonth, nDay, nHour, nMinute);
     }
     
-    int getBillNumber()
+    int getReceiptID()
     {
-        return this.billNumber;
+        return this.receiptID;
     }
     
-    void setNillNumber(int nBillNumber)
+    void setReceiptID(int receiptID)
     {
-        this.billNumber = nBillNumber;
+        this.receiptID = receiptID;
     }
     
     float getCost()
@@ -65,13 +67,21 @@ public class Bill {
     {
         this.cost = nCost;
     }
+
+    public Car getChargedCar() {
+        return chargedCar;
+    }
+
+    public void setChargedCar(Car chargedCar) {
+        this.chargedCar = chargedCar;
+    }
     
     @Override
     public String toString()
     {
         String data = "";
         return data+"Date: "+date.toString()+"\n"+
-                    "Bill #: "+billNumber+"\n"+
+                    "Bill #: "+receiptID+"\n"+
                     "Cost: "+cost;
     }
 }
