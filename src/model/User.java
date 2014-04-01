@@ -8,7 +8,7 @@
  *
  * Tarea Programada N°1
  *
- * ParkingSpot.java
+ * User.java
  * Creado a las 6:39:53 PM del 22/03/2014
  * Copyright (c) 2014, Adrian Rodriguez, Saul Zamora, Tomas Apeltauer
  * Todos los derechos reservados.

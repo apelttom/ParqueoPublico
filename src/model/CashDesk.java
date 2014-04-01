@@ -14,7 +14,7 @@
  * Todos los derechos reservados.
  */
 
-package controller;
+package model;
 
 /**
  *

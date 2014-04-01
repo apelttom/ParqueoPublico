@@ -13,8 +13,9 @@
  * Copyright (c) 2014, Adrian Rodriguez, Saul Zamora, Tomas Apeltauer
  * Todos los derechos reservados.
  */
-package controller;
+package model;
 
+import model.CashDesk;
 import java.util.*;
 import model.Receipt;
 import model.User;
@@ -40,7 +41,6 @@ public class ParkingLot {
     private Date openningTime;
     private Date closingTime;
     private CashDesk cashDesk;
-    private XMLdataStorage storageManager;
     private List<Receipt> receiptHistory;
     private List<ParkingLot> parkingSpots;
     private List<User> registeredUsers;
@@ -58,7 +58,6 @@ public class ParkingLot {
         this.openningTime = null;
         this.closingTime = null;
         this.cashDesk = new CashDesk();
-        this.storageManager = new XMLdataStorage();
         this.receiptHistory = new ArrayList<Receipt>();
         this.parkingSpots = new ArrayList<ParkingLot>();
         this.registeredUsers = new ArrayList<User>();
