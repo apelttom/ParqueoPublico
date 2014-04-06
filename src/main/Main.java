@@ -17,7 +17,6 @@ package main;
 import controller.LoginController;
 import java.util.Date;
 import model.ParkingLot;
-import model.XMLDataStorage;
 import view.LoginFrame;
 
 /**
@@ -28,7 +27,6 @@ import view.LoginFrame;
  */
 public class Main {
 
-    /*
     public static final String TEST_PL_NAME = "Testing Parking Lot!";
     public static final String TEST_PL_ADDRESS = "Testing Address!";
     public static final String TEST_PL_TELEPHONE = "Testing Telephone!";
@@ -38,23 +36,24 @@ public class Main {
     public static final int TEST_PL_LAST_RECEIPT = -1;
     public static final Date TEST_PL_OPENNING = null;
     public static final Date TEST_PL_CLOSING = null;
-    */
 
     public static void main(String[] args) {
-        /*
+
         ParkingLot modelPL = new ParkingLot(TEST_PL_NAME, TEST_PL_ADDRESS,
                 TEST_PL_TELEPHONE, TEST_PL_SLOGAN, TEST_PL_COMP_ID,
                 TEST_PL_HOURLY_RATE, TEST_PL_LAST_RECEIPT, TEST_PL_OPENNING,
                 TEST_PL_CLOSING);
         LoginFrame viewLogin = new LoginFrame();
-        LoginController controllerLogin = new LoginController(modelPL,viewLogin);
+        LoginController controllerLogin = new LoginController(modelPL, viewLogin);
         viewLogin.setVisible(true);
-        */
-        XMLDataStorage DS = new XMLDataStorage("src/data/ParkingLotInfo.xml");
-        DS.loadParkingLotInfo();
-        DS.loadCashDeskInfo();
-        DS.loadReceiptHistory();
-        DS.loadParkingSpots();
+        /*
+         XMLDataStorage DS = new XMLDataStorage("src/data/ParkingLotInfo.xml");
+         DS.loadParkingLotInfo();
+         DS.loadCashDeskInfo();
+         DS.loadReceiptHistory();
+         DS.loadParkingSpots();
+         */
+
     }
 
 }

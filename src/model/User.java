@@ -13,7 +13,6 @@
  * Copyright (c) 2014, Adrian Rodriguez, Saul Zamora, Tomas Apeltauer
  * Todos los derechos reservados.
  */
-
 package model;
 
 /**
@@ -24,16 +23,28 @@ package model;
  */
 public class User {
 
-    private String userName;
+    private String username;
+    //pasword has to be hashed in all times!
     private String password;
 
-    //TODO change behaviour
+    /**
+     * Creates new user according to the parameters.
+     *
+     * @param username
+     * @param password NEVER use plain text! Always pass hashed password. For
+     * this use class PasswordHash
+     */
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getPassword() {
@@ -43,8 +54,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    private void encryptPassword(){
-        //TODO encryption of password
+
+    @Override
+    public String toString() {
+        String msg = "";
+        msg += "Username: " + username + "\n"
+                + "Hashed password: " + password;
+        return msg;
     }
 }

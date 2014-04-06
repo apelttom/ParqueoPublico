@@ -15,6 +15,7 @@
  */
 package model;
 
+import controller.PasswordHash;
 import java.util.*;
 
 /**
@@ -190,6 +191,61 @@ public class ParkingLot {
 
     private void verificateAdmin() {
         //TODO implement method for verification of admin account and password
+    }
+
+    /**
+     * Add new User object between registered users.
+     * Only if such user already isn't registered.
+     *
+     * @param newUser
+     * @return false if user with such username is already registered.
+     */
+    public boolean addUser(User newUser) {
+        if (getUser(newUser.getUserName()) == null) {
+            registeredUsers.add(newUser);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Search for a registered user based on provided username.
+     *
+     * @param username
+     * @return object User with given username or null if there isn't such
+     * object.
+     */
+    public User getUser(String username) {
+        for (User user : registeredUsers) {
+            if (user.getUserName().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * List through registered users searching for username and password
+     * provided.
+     *
+     * @param username provided by user.
+     * @param password provided by user.
+     * @return true if such user has been registered. False otherwise.
+     * @throws Exception if there are no registered users or if an error occurs
+     * during password hashing
+     */
+    public boolean verifyUser(String username, String password) throws Exception {
+        if (registeredUsers.isEmpty()) {
+            throw new IllegalStateException("There are no registered users!");
+        }
+        for (User user : registeredUsers) {
+            if (user.getUserName().equals(username)) {
+                if (PasswordHash.check(password, user.getPassword())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
