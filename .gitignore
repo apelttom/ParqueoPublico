@@ -14,3 +14,6 @@ build.xml
 nbproject/*
 !nbproject/project.properties
 !nbproject/project.xml
+
+# Don't ignore files in libraries #
+!libraries/
