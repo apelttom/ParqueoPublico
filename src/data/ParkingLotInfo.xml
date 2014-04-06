@@ -26,7 +26,10 @@ Todos los derechos reservados.
     <parkSpotNumber>10</parkSpotNumber>
     <openningTime>07:00:00</openningTime>
     <closingTime>20:00:00</closingTime>
-    <cashDesk></cashDesk>
+    <cashDesk>
+        <actualCash>7777.77</actualCash>
+        <minCash>5555.55</minCash>
+    </cashDesk>
     <parkingSpotList>
         <parkingSpot id="1">
             <description></description>
@@ -55,17 +58,28 @@ Todos los derechos reservados.
     </parkingSpotList>
     <receiptHistory>
         <receipt id="0001">
-            <date></date>
+            <date>05/04/2014</date>
             <car>
                 <licensePlate>ABC123</licensePlate>
-                <color></color>
-                <brand></brand>
-                <model></model>
-                <entryTime></entryTime>
-                <exitTime></exitTime>
+                <color>red</color>
+                <brand>Nissan</brand>
+                <model>Sentra</model>
+                <entryTime>15:05:30</entryTime>
+                <exitTime>17:32:40</exitTime>
             </car>
-            <cost></cost>
+            <cost>5555.5</cost>
         </receipt>
-        <receipt id="0002"></receipt>
+        <receipt id="0002">
+            <date>05/04/2014</date>
+            <car>
+                <licensePlate>JFH645</licensePlate>
+                <color>blue</color>
+                <brand>Toyota</brand>
+                <model>Prius</model>
+                <entryTime>15:45:36</entryTime>
+                <exitTime>14:20:45</exitTime>
+            </car>
+            <cost>3333.33</cost>
+        </receipt>
     </receiptHistory>
 </ParkingLot>

@@ -27,6 +27,26 @@ public class CashDesk {
     private float actualCash;
     private float minCash;
     
+    public CashDesk(){
+        this.actualCash = 0;
+        this.minCash = 0;
+    }
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters and Setters">
+    public void setActualCash(float pActualCash){
+        actualCash = pActualCash;
+    }
+    public void setMinCash(float pMinCash){
+        minCash = pMinCash;
+    }
+    public float getActualCash(){
+        return actualCash;
+    }
+    public float getMinCash(){
+        return minCash;
+    }
+    //</editor-fold>
+    
     public void depositMoney(){
         //TODO implement depositing certain amount of money
     }

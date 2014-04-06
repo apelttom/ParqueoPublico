@@ -87,9 +87,9 @@ public class Car {
         return this.entryTime;
     }
     
-    void setEntryTime(int nYear, int nMonth, int nDay, int nHour, int nMinute)
+    void setEntryTime(Date pDate)
     {
-        this.entryTime = new Date(nYear, nMonth, nDay, nHour, nMinute);
+        this.entryTime = pDate;
     }
     
     Date getExitTime()
@@ -97,9 +97,9 @@ public class Car {
         return this.exitTime;
     }
     
-    void setExitTime(int nYear, int nMonth, int nDay, int nHour, int nMinute)
+    void setExitTime(Date pDate)
     {
-        this.exitTime = new Date(nYear, nMonth, nDay, nHour, nMinute);
+        this.exitTime = pDate;
     }
     
     @Override
@@ -109,6 +109,8 @@ public class Car {
         return data+"Brand: "+brand+"\n"+
                     "Model: "+model+"\n"+
                     "Color: "+color+"\n"+
-                    "License Plate: "+licensePlate;
+                    "License Plate: "+licensePlate+"\n"+
+                    "Entry Date: "+entryTime+"\n"+
+                    "Exit Time: "+exitTime;
     }
 }

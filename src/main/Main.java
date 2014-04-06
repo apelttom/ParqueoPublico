@@ -52,6 +52,8 @@ public class Main {
         */
         XMLDataStorage DS = new XMLDataStorage("src/data/ParkingLotInfo.xml");
         DS.loadParkingLotInfo();
+        DS.loadCashDeskInfo();
+        DS.loadReceiptHistory();
     }
 
 }

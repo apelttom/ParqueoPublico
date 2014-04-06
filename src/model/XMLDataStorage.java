@@ -45,13 +45,18 @@ public class XMLDataStorage {
     
     public XMLDataStorage(String pFileName){
         try{
-        fileName = pFileName;
-        PL = new ParkingLot();
-        fXmlFile = new File(fileName);
-        dbFactory = DocumentBuilderFactory.newInstance();
-        dBuilder = dbFactory.newDocumentBuilder();
-        doc = dBuilder.parse(fXmlFile);
-        doc.getDocumentElement().normalize();
+            this.PL = new ParkingLot();
+            this.CD = new CashDesk();
+            this.receiptHistory = new ArrayList<Receipt>();
+            this.parkingSpots = new ArrayList<ParkingSpot>();
+            this.registeredUsers = new ArrayList<User>();
+            
+            this.fileName = pFileName;
+            this.fXmlFile = new File(fileName);
+            this.dbFactory = DocumentBuilderFactory.newInstance();
+            this.dBuilder = dbFactory.newDocumentBuilder();
+            this.doc = dBuilder.parse(fXmlFile);
+            doc.getDocumentElement().normalize();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -63,8 +68,6 @@ public class XMLDataStorage {
         try{
             Element eElement = doc.getDocumentElement();
 
-            System.out.println("Root element :" + eElement.getNodeName());
-            
             PL.setName(eElement.getElementsByTagName("name").item(0).getTextContent());
             PL.setAddress(eElement.getElementsByTagName("address").item(0).getTextContent());
             PL.setTelephone(eElement.getElementsByTagName("telephone").item(0).getTextContent());
@@ -83,19 +86,6 @@ public class XMLDataStorage {
             } catch (Exception exc) {
                 exc.printStackTrace();
             }
-
-            System.out.println("Name :" + PL.getName());
-            System.out.println("Address :" + PL.getAddress());
-            System.out.println("Telephone :" + PL.getTelephone());
-            System.out.println("Slogan :" + PL.getSlogan());
-            System.out.println("CompanyID :" + PL.getCompanyID());
-            System.out.println("HourlyRate :" + PL.getHourlyRate());
-            System.out.println("Last Receipt Number :" + PL.getLastReceiptNumber());
-            System.out.println("Parking Spot Number :" + PL.getParkSpotNumber());
-            System.out.println("Openning Time :" + PL.getOpenningTime());
-            System.out.println("Closing Time :" + PL.getClosingTime());
-
-            System.out.println("----------------------------");
         }
         catch(Exception e){
             e.printStackTrace();
@@ -103,11 +93,71 @@ public class XMLDataStorage {
     }
     
     public void loadCashDeskInfo(){
-        //TODO
+        try{
+            Element eElement = (Element) doc.getDocumentElement().getElementsByTagName("cashDesk").item(0);
+            
+            CD.setActualCash(Float.parseFloat(eElement.getElementsByTagName("actualCash").item(0).getTextContent()));
+            CD.setMinCash(Float.parseFloat(eElement.getElementsByTagName("minCash").item(0).getTextContent()));
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     public void loadReceiptHistory(){
-        //TODO
+        try{
+            Element rHistoryElement = (Element) doc.getDocumentElement().getElementsByTagName("receiptHistory").item(0);
+            NodeList nList = rHistoryElement.getElementsByTagName("receipt");
+            
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+ 
+		Node nNode = nList.item(temp);
+ 
+		System.out.println("\nCurrent Element :" + nNode.getNodeName());
+ 
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    
+                    System.out.println("Receipt id : " + eElement.getAttribute("id"));
+                    
+                    SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                    SimpleDateFormat hourFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                    
+                    String dateString = eElement.getElementsByTagName("date").item(0).getTextContent();
+                    String entryTimeString = dateString + " " + eElement.getElementsByTagName("entryTime").item(0).getTextContent();
+                    String exitTimeString = dateString + " " + eElement.getElementsByTagName("exitTime").item(0).getTextContent();
+                    
+                    try {
+                        System.out.println("Date : " + dateFormatter.parse(dateString));
+                    } catch (Exception exc) {
+                        exc.printStackTrace();
+                    }
+                    
+                    Element carElement = (Element) eElement.getElementsByTagName("car").item(0);
+                    Car car = new Car(
+                            carElement.getElementsByTagName("licensePlate").item(0).getTextContent(),
+                            carElement.getElementsByTagName("color").item(0).getTextContent(),
+                            carElement.getElementsByTagName("brand").item(0).getTextContent(),
+                            carElement.getElementsByTagName("model").item(0).getTextContent()
+                            );
+                    
+                    try {
+                        car.setEntryTime(hourFormatter.parse(entryTimeString));
+                        car.setExitTime(hourFormatter.parse(exitTimeString));
+                    } catch (Exception exc) {
+                        exc.printStackTrace();
+                    }
+                    
+                    System.out.println(car.toString());
+                    
+                    System.out.println("Cost: " + Float.parseFloat(eElement.getElementsByTagName("cost").item(0).getTextContent()));
+ 
+		}
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
     public void loadParkingSpots(){
