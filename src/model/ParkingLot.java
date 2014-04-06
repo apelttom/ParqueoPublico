@@ -39,7 +39,7 @@ public class ParkingLot {
     private Date closingTime;
     private CashDesk cashDesk;
     private List<Receipt> receiptHistory;
-    private List<ParkingLot> parkingSpots;
+    private List<ParkingSpot> parkingSpots;
     private List<User> registeredUsers;
 
     // Constructor #1
@@ -56,7 +56,7 @@ public class ParkingLot {
         this.closingTime = null;
         this.cashDesk = new CashDesk();
         this.receiptHistory = new ArrayList<Receipt>();
-        this.parkingSpots = new ArrayList<ParkingLot>();
+        this.parkingSpots = new ArrayList<ParkingSpot>();
         this.registeredUsers = new ArrayList<User>();
     }
 
@@ -76,7 +76,7 @@ public class ParkingLot {
         this.closingTime = pClosingTime;
         this.cashDesk = new CashDesk();
         this.receiptHistory = new ArrayList<Receipt>();
-        this.parkingSpots = new ArrayList<ParkingLot>();
+        this.parkingSpots = new ArrayList<ParkingSpot>();
         this.registeredUsers = new ArrayList<User>();
     }
 

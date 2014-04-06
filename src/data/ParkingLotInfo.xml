@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Instituto Tecnologico de Costa Rica
+Escuela de Ingenieria en Computacion
+
+Curso: IC-2101 Programacion Orientada a Objetos
+Profesor: Mauricio Aviles Cisneros
+I Semestre 2014
+
+Laboratorio N°2
+
+ParkingLotInfo.xml
+Creado a las 16:06:51 del 09/03/2014
+Copyright (c) 2014, Adrian Rodriguez Villalobos <adrian.rov@gmail.com>
+Todos los derechos reservados.
+-->
+
+<ParkingLot>
+    <name>Insert random name here</name>
+    <address>Insert random address here</address>
+    <telephone>Insert random telephone here</telephone>
+    <slogan>Insert random slogan here</slogan>
+    <companyID>Insert random companyID here</companyID>
+    <hourlyRate>5.55</hourlyRate>
+    <parkingSpotList>
+        <parkingSpot id="1">
+            <description></description>
+            <occupied>false</occupied>
+            <car>
+                <licensePlate></licensePlate>
+                <color></color>
+                <brand></brand>
+                <model></model>
+                <entryTime></entryTime>
+                <exitTime></exitTime>
+            </car>
+        </parkingSpot>
+        <parkingSpot id="2">
+            <description></description>
+            <occupied>false</occupied>
+            <car>
+                <licensePlate></licensePlate>
+                <color></color>
+                <brand></brand>
+                <model></model>
+                <entryTime></entryTime>
+                <exitTime></exitTime>
+            </car>
+        </parkingSpot>
+    </parkingSpotList>
+    <receiptList>
+        <receipt id="0001">
+            <date></date>
+            <car>
+                <licensePlate>ABC123</licensePlate>
+                <color></color>
+                <brand></brand>
+                <model></model>
+                <entryTime></entryTime>
+                <exitTime></exitTime>
+            </car>
+            <cost></cost>
+        </receipt>
+        <receipt id="0002"></receipt>
+    </receiptList>
+</ParkingLot>
