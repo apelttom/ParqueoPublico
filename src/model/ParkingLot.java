@@ -39,6 +39,7 @@ public class ParkingLot {
     private Date openningTime;
     private Date closingTime;
     private CashDesk cashDesk;
+    private User loggedUser;
     private List<Receipt> receiptHistory;
     private List<ParkingSpot> parkingSpots;
     private List<User> registeredUsers;
@@ -56,6 +57,7 @@ public class ParkingLot {
         this.openningTime = null;
         this.closingTime = null;
         this.cashDesk = new CashDesk();
+        this.loggedUser = null;
         this.receiptHistory = new ArrayList<Receipt>();
         this.parkingSpots = new ArrayList<ParkingSpot>();
         this.registeredUsers = new ArrayList<User>();
@@ -76,6 +78,7 @@ public class ParkingLot {
         this.openningTime = pOpenningTime;
         this.closingTime = pClosingTime;
         this.cashDesk = new CashDesk();
+        this.loggedUser = null;
         this.receiptHistory = new ArrayList<Receipt>();
         this.parkingSpots = new ArrayList<ParkingSpot>();
         this.registeredUsers = new ArrayList<User>();
@@ -104,6 +107,7 @@ public class ParkingLot {
 
     void setTelephone(String nTelephone) {
         this.telephone = nTelephone;
+        //TODO checking if it is telephone number
         /* for now I'm gonna leave it like this,
          * but I plan to check if the new phone number
          * is valid by using regular expressions. - Saul
@@ -173,11 +177,37 @@ public class ParkingLot {
     void setClosingTime(Date nDate) {
         this.closingTime = nDate;
     }
+
+    public User getLoggedUser() {
+        return loggedUser;
+    }
+
+    public void setLoggedUser(User loggedUser) {
+        this.loggedUser = loggedUser;
+    }
 //</editor-fold>
 
-    private void openParkingLot() {
+    public void loadContent(XMLDataStorage DBConnect) {
+        //Waiting for Adrian's class
+        //TODO implement loading content from database (XMLFile)
+    }
+
+    public void openParkingLot() throws IllegalStateException {
         //TODO implement funcionality of openning the ParkingLot
-        //Also with verification
+        verifyStartRequirements();
+        System.out.println("Start Parking Lot funcionality is coming soon...");
+    }
+
+    private void verifyStartRequirements() throws IllegalStateException {
+        if (cashDesk.getActualCash() < cashDesk.getMinCash()) {
+            throw new IllegalStateException("There is not enough cash in"
+                    + "Cash desk to open Parking Lot!\n"
+                    + "The minimal limit is: " + cashDesk.getMinCash());
+        }
+        if (parkingSpots.isEmpty()) {
+            throw new IllegalStateException("Number of parking spots "
+                    + "is not defined!");
+        }
     }
 
     private void closeParkingLot() {
@@ -200,8 +230,8 @@ public class ParkingLot {
      * @param newUser
      * @return false if user with such username is already registered.
      */
-    public boolean addUser(User newUser) {
-        if (getUser(newUser.getUserName()) == null) {
+    public boolean registerUser(User newUser) {
+        if (getRegisteredUser(newUser.getUserName()) == null) {
             registeredUsers.add(newUser);
             return true;
         }
@@ -215,7 +245,7 @@ public class ParkingLot {
      * @return object User with given username or null if there isn't such
      * object.
      */
-    public User getUser(String username) {
+    public User getRegisteredUser(String username) {
         for (User user : registeredUsers) {
             if (user.getUserName().equals(username)) {
                 return user;
@@ -257,7 +287,6 @@ public class ParkingLot {
                 + "Phone #: " + telephone + "\n"
                 + "Company ID: " + companyID + "\n"
                 + "Rate: " + hourlyRate;
-
         return data;
     }
 }

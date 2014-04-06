@@ -12,6 +12,7 @@
  * Copyright (c) 2014, Adrian Rodriguez, Saul Zamora, Tomas Apeltauer
  * Todos los derechos reservados.
  */
+
 package main;
 
 import controller.LoginController;
@@ -39,13 +40,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ParkingLot modelPL = new ParkingLot(TEST_PL_NAME, TEST_PL_ADDRESS,
+        ParkingLot parkingLotModel = new ParkingLot(TEST_PL_NAME, TEST_PL_ADDRESS,
                 TEST_PL_TELEPHONE, TEST_PL_SLOGAN, TEST_PL_COMP_ID,
                 TEST_PL_HOURLY_RATE, TEST_PL_LAST_RECEIPT, TEST_PL_OPENNING,
                 TEST_PL_CLOSING);
-        LoginFrame viewLogin = new LoginFrame();
-        LoginController controllerLogin = new LoginController(modelPL, viewLogin);
-        viewLogin.setVisible(true);
+        LoginFrame loginView = new LoginFrame();
+        LoginController controllerLogin = new LoginController(parkingLotModel, loginView);
+        controllerLogin.showLogin();
         /*
          XMLDataStorage DS = new XMLDataStorage("src/data/ParkingLotInfo.xml");
          DS.loadParkingLotInfo();
