@@ -81,6 +81,7 @@ public class ParkingSpot {
         if(occupied)
         {
             data = data+"Availability: Taken"+"\n";
+            data += parkedCar.toString();
         }else{
             data = data+"Availability: Free"+"\n";
         }

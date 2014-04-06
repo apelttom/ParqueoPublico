@@ -46,6 +46,7 @@ Todos los derechos reservados.
                 <brand>Hyundai</brand>
                 <model>Excel</model>
                 <entryTime>05/04/2014 07:31:46</entryTime>
+                <exitTime></exitTime>
             </car>
         </parkingSpot>
     </parkingSpotList>

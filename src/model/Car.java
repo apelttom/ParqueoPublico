@@ -107,11 +107,17 @@ public class Car {
     public String toString()
     {
         String data = "";
-        return data+"Brand: "+brand+"\n"+
+        data +=     "Brand: "+brand+"\n"+
                     "Model: "+model+"\n"+
                     "Color: "+color+"\n"+
                     "License Plate: "+licensePlate+"\n"+
-                    "Entry Date: "+entryTime+"\n"+
-                    "Exit Time: "+exitTime;
+                    "Entry Date: "+entryTime+"\n";
+        if(exitTime != null)
+            data += "Exit Time: "+exitTime;
+        else
+            data += "Exit Time: It's still parked";
+        
+        return data;
+                    
     }
 }

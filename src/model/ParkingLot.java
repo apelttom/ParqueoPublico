@@ -185,6 +185,22 @@ public class ParkingLot {
     public void setLoggedUser(User loggedUser) {
         this.loggedUser = loggedUser;
     }
+    
+    public void setCashDesk(CashDesk pCashDesk){
+        cashDesk = pCashDesk;
+    };
+    
+    public void setReceiptHistory(List<Receipt> pReceiptHistory){
+        receiptHistory = pReceiptHistory;
+    };
+    
+    public void setParkingSpots(List<ParkingSpot> pParkingSpots){
+        parkingSpots = pParkingSpots;
+    };
+    
+    public void setRegisteredUsers(List<User> pRegisteredUsers){
+        registeredUsers = pRegisteredUsers;
+    };
 //</editor-fold>
 
     public void loadContent(XMLDataStorage DBConnect) {
