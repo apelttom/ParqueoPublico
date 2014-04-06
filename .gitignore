@@ -15,5 +15,9 @@ nbproject/*
 !nbproject/project.properties
 !nbproject/project.xml
 
-# Don't ignore files in libraries #
-!libraries/
+# Don't ignore Apache codec libraries #
+!libraries/Apache-commons-codec-1.9/commons-codec-1.9.jar
+!libraries/Apache-commons-codec-1.9/commons-codec-1.9-javadoc.jar
+!libraries/Apache-commons-codec-1.9/commons-codec-1.9-sources.jar
+!libraries/Apache-commons-codec-1.9/commons-codec-1.9-tests.jar
+!libraries/Apache-commons-codec-1.9/commons-codec-1.9-test-sources.jar
