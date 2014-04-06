@@ -54,6 +54,7 @@ public class Main {
         DS.loadParkingLotInfo();
         DS.loadCashDeskInfo();
         DS.loadReceiptHistory();
+        DS.loadParkingSpots();
     }
 
 }

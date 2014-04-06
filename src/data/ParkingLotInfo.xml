@@ -35,24 +35,17 @@ Todos los derechos reservados.
             <description></description>
             <occupied>false</occupied>
             <car>
-                <licensePlate></licensePlate>
-                <color></color>
-                <brand></brand>
-                <model></model>
-                <entryTime></entryTime>
-                <exitTime></exitTime>
             </car>
         </parkingSpot>
         <parkingSpot id="2">
             <description></description>
-            <occupied>false</occupied>
+            <occupied>true</occupied>
             <car>
-                <licensePlate></licensePlate>
-                <color></color>
-                <brand></brand>
-                <model></model>
-                <entryTime></entryTime>
-                <exitTime></exitTime>
+                <licensePlate>KFJ354</licensePlate>
+                <color>green</color>
+                <brand>Hyundai</brand>
+                <model>Excel</model>
+                <entryTime>05/04/2014 07:31:46</entryTime>
             </car>
         </parkingSpot>
     </parkingSpotList>
@@ -64,8 +57,8 @@ Todos los derechos reservados.
                 <color>red</color>
                 <brand>Nissan</brand>
                 <model>Sentra</model>
-                <entryTime>15:05:30</entryTime>
-                <exitTime>17:32:40</exitTime>
+                <entryTime>05/04/2014 15:05:30</entryTime>
+                <exitTime>05/04/2014 17:32:40</exitTime>
             </car>
             <cost>5555.5</cost>
         </receipt>
@@ -76,8 +69,8 @@ Todos los derechos reservados.
                 <color>blue</color>
                 <brand>Toyota</brand>
                 <model>Prius</model>
-                <entryTime>15:45:36</entryTime>
-                <exitTime>14:20:45</exitTime>
+                <entryTime>05/04/2014 15:45:36</entryTime>
+                <exitTime>05/04/2014 14:20:45</exitTime>
             </car>
             <cost>3333.33</cost>
         </receipt>

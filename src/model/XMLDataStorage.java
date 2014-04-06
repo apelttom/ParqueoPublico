@@ -113,27 +113,27 @@ public class XMLDataStorage {
  
 		Node nNode = nList.item(temp);
  
-		System.out.println("\nCurrent Element :" + nNode.getNodeName());
- 
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
+                    Receipt receipt = new Receipt(); 
                     
-                    System.out.println("Receipt id : " + eElement.getAttribute("id"));
+                    receipt.setReceiptID(Integer.parseInt(eElement.getAttribute("id")));
                     
                     SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
                     SimpleDateFormat hourFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     
                     String dateString = eElement.getElementsByTagName("date").item(0).getTextContent();
-                    String entryTimeString = dateString + " " + eElement.getElementsByTagName("entryTime").item(0).getTextContent();
-                    String exitTimeString = dateString + " " + eElement.getElementsByTagName("exitTime").item(0).getTextContent();
+                    String entryTimeString = eElement.getElementsByTagName("entryTime").item(0).getTextContent();
+                    String exitTimeString = eElement.getElementsByTagName("exitTime").item(0).getTextContent();
                     
                     try {
-                        System.out.println("Date : " + dateFormatter.parse(dateString));
+                        receipt.setDate(dateFormatter.parse(dateString));
                     } catch (Exception exc) {
                         exc.printStackTrace();
                     }
                     
                     Element carElement = (Element) eElement.getElementsByTagName("car").item(0);
+                    
                     Car car = new Car(
                             carElement.getElementsByTagName("licensePlate").item(0).getTextContent(),
                             carElement.getElementsByTagName("color").item(0).getTextContent(),
@@ -148,10 +148,10 @@ public class XMLDataStorage {
                         exc.printStackTrace();
                     }
                     
-                    System.out.println(car.toString());
+                    receipt.setChargedCar(car);
+                    receipt.setCost(Float.parseFloat(eElement.getElementsByTagName("cost").item(0).getTextContent()));
                     
-                    System.out.println("Cost: " + Float.parseFloat(eElement.getElementsByTagName("cost").item(0).getTextContent()));
- 
+                    receiptHistory.add(receipt);
 		}
             }
         }
@@ -161,6 +161,54 @@ public class XMLDataStorage {
     }
     
     public void loadParkingSpots(){
+        try{
+            Element sListElement = (Element) doc.getDocumentElement().getElementsByTagName("parkingSpotList").item(0);
+            NodeList nList = sListElement.getElementsByTagName("parkingSpot");
+            
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+                
+                Node nNode = nList.item(temp);
+ 
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    
+                    ParkingSpot parkingSpot = new ParkingSpot(
+                            Integer.parseInt(eElement.getAttribute("id")),
+                            eElement.getElementsByTagName("description").item(0).getTextContent()
+                        );
+                    
+                    parkingSpot.setOccupied(Boolean.parseBoolean(eElement.getElementsByTagName("occupied").item(0).getTextContent()));
+                    
+                    if(parkingSpot.isOccupied()){
+                        Element carElement = (Element) eElement.getElementsByTagName("car").item(0);
+
+                        Car car = new Car(
+                                carElement.getElementsByTagName("licensePlate").item(0).getTextContent(),
+                                carElement.getElementsByTagName("color").item(0).getTextContent(),
+                                carElement.getElementsByTagName("brand").item(0).getTextContent(),
+                                carElement.getElementsByTagName("model").item(0).getTextContent()
+                                );
+
+                        SimpleDateFormat hourFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+                        String entryTimeString = eElement.getElementsByTagName("entryTime").item(0).getTextContent();
+
+                        try {
+                            car.setEntryTime(hourFormatter.parse(entryTimeString));
+                        } catch (Exception exc) {
+                            exc.printStackTrace();
+                        }
+
+                        parkingSpot.setParkedCar(car);
+                    }
+                    
+                    parkingSpots.add(parkingSpot);
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
         //TODO
     }
     

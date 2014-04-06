@@ -30,6 +30,13 @@ public class Receipt {
     private Car chargedCar;
     
     // Constructor
+    public Receipt()
+    {
+        this.date = new Date();
+        this.receiptID = 0;
+        this.cost = 0;
+    }
+    
     public Receipt(Date pDate)
     {
         this.date = pDate;
@@ -43,9 +50,9 @@ public class Receipt {
         return this.date;
     }
     
-    void setDate(int nYear, int nMonth, int nDay, int nHour, int nMinute)
+    void setDate(Date pDate)
     {
-        this.date = new Date(nYear, nMonth, nDay, nHour, nMinute);
+        this.date = pDate;
     }
     
     int getReceiptID()
@@ -82,6 +89,7 @@ public class Receipt {
         String data = "";
         return data+"Date: "+date.toString()+"\n"+
                     "Bill #: "+receiptID+"\n"+
+                    chargedCar.toString()+"\n"+
                     "Cost: "+cost;
     }
 }

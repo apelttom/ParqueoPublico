@@ -36,6 +36,7 @@ public class Car {
     {
         this.licensePlate = pPlate;
         this.color = pColor;
+        this.brand = pBrand;
         this.model = pModel;
         this.entryTime = null;
         this.exitTime = null;
