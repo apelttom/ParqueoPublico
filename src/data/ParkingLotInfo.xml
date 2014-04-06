@@ -22,6 +22,11 @@ Todos los derechos reservados.
     <slogan>Insert random slogan here</slogan>
     <companyID>Insert random companyID here</companyID>
     <hourlyRate>5.55</hourlyRate>
+    <lastReceiptNumber>2</lastReceiptNumber>
+    <parkSpotNumber>10</parkSpotNumber>
+    <openningTime>07:00:00</openningTime>
+    <closingTime>20:00:00</closingTime>
+    <cashDesk></cashDesk>
     <parkingSpotList>
         <parkingSpot id="1">
             <description></description>
@@ -48,7 +53,7 @@ Todos los derechos reservados.
             </car>
         </parkingSpot>
     </parkingSpotList>
-    <receiptList>
+    <receiptHistory>
         <receipt id="0001">
             <date></date>
             <car>
@@ -62,5 +67,5 @@ Todos los derechos reservados.
             <cost></cost>
         </receipt>
         <receipt id="0002"></receipt>
-    </receiptList>
+    </receiptHistory>
 </ParkingLot>

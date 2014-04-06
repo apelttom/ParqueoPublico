@@ -161,16 +161,16 @@ public class ParkingLot {
         return this.openningTime;
     }
 
-    void setOpenningTime(int nYear, int nMonth, int nDay, int nHour, int nMinute) {
-        this.openningTime = new Date(nYear, nMonth, nDay, nHour, nMinute);
+    void setOpenningTime(Date nDate) {
+        this.openningTime = nDate;
     }
 
     Date getClosingTime() {
         return this.closingTime;
     }
 
-    void setClosingTime(int nYear, int nMonth, int nDay, int nHour, int nMinute) {
-        this.closingTime = new Date(nYear, nMonth, nDay, nHour, nMinute);
+    void setClosingTime(Date nDate) {
+        this.closingTime = nDate;
     }
 //</editor-fold>
 
