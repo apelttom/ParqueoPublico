@@ -59,4 +59,11 @@ public class CashDesk {
         throw new UnsupportedOperationException("Operation not yet implemented");
         //TODO implement test if there is sufficient certain amount of money
     }
+    
+    public String toString(){
+        String data = new String();
+        data += "Minimum Cash on Desk: " + minCash + "\n"+
+                "Actual Cash on Desk: " + actualCash + "\n";
+        return data;
+    }
 }

@@ -17,6 +17,7 @@ package main;
 import controller.LoginController;
 import java.util.Date;
 import model.ParkingLot;
+import model.XMLDataStorage;
 import view.LoginFrame;
 
 /**
@@ -38,7 +39,6 @@ public class Main {
     public static final Date TEST_PL_CLOSING = null;
 
     public static void main(String[] args) {
-
         ParkingLot modelPL = new ParkingLot(TEST_PL_NAME, TEST_PL_ADDRESS,
                 TEST_PL_TELEPHONE, TEST_PL_SLOGAN, TEST_PL_COMP_ID,
                 TEST_PL_HOURLY_RATE, TEST_PL_LAST_RECEIPT, TEST_PL_OPENNING,
@@ -46,13 +46,13 @@ public class Main {
         LoginFrame viewLogin = new LoginFrame();
         LoginController controllerLogin = new LoginController(modelPL, viewLogin);
         viewLogin.setVisible(true);
-        /*
-         XMLDataStorage DS = new XMLDataStorage("src/data/ParkingLotInfo.xml");
-         DS.loadParkingLotInfo();
-         DS.loadCashDeskInfo();
-         DS.loadReceiptHistory();
-         DS.loadParkingSpots();
-         */
+        
+        ParkingLot parkingLotModel = new ParkingLot();   
+        XMLDataStorage DS = new XMLDataStorage("src/data/ParkingLotInfo.xml");
+        parkingLotModel = DS.loadParkingLotInfo();
+        
+        System.out.println(parkingLotModel.toString());
+         
 
     }
 

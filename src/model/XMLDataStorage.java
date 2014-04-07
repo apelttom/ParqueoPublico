@@ -37,20 +37,8 @@ public class XMLDataStorage {
     private DocumentBuilder dBuilder;
     private Document doc;
     
-    private ParkingLot PL;
-    private CashDesk CD;
-    private List<Receipt> receiptHistory;
-    private List<ParkingSpot> parkingSpots;
-    private List<User> registeredUsers;
-    
     public XMLDataStorage(String pFileName){
         try{
-            this.PL = new ParkingLot();
-            this.CD = new CashDesk();
-            this.receiptHistory = new ArrayList<Receipt>();
-            this.parkingSpots = new ArrayList<ParkingSpot>();
-            this.registeredUsers = new ArrayList<User>();
-            
             this.fileName = pFileName;
             this.fXmlFile = new File(fileName);
             this.dbFactory = DocumentBuilderFactory.newInstance();
@@ -64,7 +52,8 @@ public class XMLDataStorage {
     }
     
     //<editor-fold defaultstate="collapsed" desc="Load Methods">
-    public void loadParkingLotInfo(){
+    public ParkingLot loadParkingLotInfo(){
+        ParkingLot PL = new ParkingLot();
         try{
             Element eElement = doc.getDocumentElement();
 
@@ -86,13 +75,19 @@ public class XMLDataStorage {
             } catch (Exception exc) {
                 exc.printStackTrace();
             }
+            
+            PL.setCashDesk(loadCashDeskInfo());
+            PL.setParkingSpots(loadParkingSpots());
+            PL.setReceiptHistory(loadReceiptHistory());
         }
         catch(Exception e){
             e.printStackTrace();
         }
+        return PL;
     }
     
-    public void loadCashDeskInfo(){
+    public CashDesk loadCashDeskInfo(){
+        CashDesk CD = new CashDesk();
         try{
             Element eElement = (Element) doc.getDocumentElement().getElementsByTagName("cashDesk").item(0);
             
@@ -102,9 +97,11 @@ public class XMLDataStorage {
         catch(Exception e){
             e.printStackTrace();
         }
+        return CD;
     }
     
-    public void loadReceiptHistory(){
+    public List<Receipt> loadReceiptHistory(){
+        List<Receipt> receiptHistory = new ArrayList<Receipt>();
         try{
             Element rHistoryElement = (Element) doc.getDocumentElement().getElementsByTagName("receiptHistory").item(0);
             NodeList nList = rHistoryElement.getElementsByTagName("receipt");
@@ -120,11 +117,8 @@ public class XMLDataStorage {
                     receipt.setReceiptID(Integer.parseInt(eElement.getAttribute("id")));
                     
                     SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-                    SimpleDateFormat hourFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                     
                     String dateString = eElement.getElementsByTagName("date").item(0).getTextContent();
-                    String entryTimeString = eElement.getElementsByTagName("entryTime").item(0).getTextContent();
-                    String exitTimeString = eElement.getElementsByTagName("exitTime").item(0).getTextContent();
                     
                     try {
                         receipt.setDate(dateFormatter.parse(dateString));
@@ -134,21 +128,7 @@ public class XMLDataStorage {
                     
                     Element carElement = (Element) eElement.getElementsByTagName("car").item(0);
                     
-                    Car car = new Car(
-                            carElement.getElementsByTagName("licensePlate").item(0).getTextContent(),
-                            carElement.getElementsByTagName("color").item(0).getTextContent(),
-                            carElement.getElementsByTagName("brand").item(0).getTextContent(),
-                            carElement.getElementsByTagName("model").item(0).getTextContent()
-                            );
-                    
-                    try {
-                        car.setEntryTime(hourFormatter.parse(entryTimeString));
-                        car.setExitTime(hourFormatter.parse(exitTimeString));
-                    } catch (Exception exc) {
-                        exc.printStackTrace();
-                    }
-                    
-                    receipt.setChargedCar(car);
+                    receipt.setChargedCar(loadCar(carElement));
                     receipt.setCost(Float.parseFloat(eElement.getElementsByTagName("cost").item(0).getTextContent()));
                     
                     receiptHistory.add(receipt);
@@ -158,9 +138,11 @@ public class XMLDataStorage {
         catch(Exception e){
             e.printStackTrace();
         }
+        return receiptHistory;
     }
     
-    public void loadParkingSpots(){
+    public List<ParkingSpot> loadParkingSpots(){
+        List<ParkingSpot> parkingSpots = new ArrayList<ParkingSpot>();
         try{
             Element sListElement = (Element) doc.getDocumentElement().getElementsByTagName("parkingSpotList").item(0);
             NodeList nList = sListElement.getElementsByTagName("parkingSpot");
@@ -182,24 +164,7 @@ public class XMLDataStorage {
                     if(parkingSpot.isOccupied()){
                         Element carElement = (Element) eElement.getElementsByTagName("car").item(0);
 
-                        Car car = new Car(
-                                carElement.getElementsByTagName("licensePlate").item(0).getTextContent(),
-                                carElement.getElementsByTagName("color").item(0).getTextContent(),
-                                carElement.getElementsByTagName("brand").item(0).getTextContent(),
-                                carElement.getElementsByTagName("model").item(0).getTextContent()
-                                );
-
-                        SimpleDateFormat hourFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
-                        String entryTimeString = eElement.getElementsByTagName("entryTime").item(0).getTextContent();
-
-                        try {
-                            car.setEntryTime(hourFormatter.parse(entryTimeString));
-                        } catch (Exception exc) {
-                            exc.printStackTrace();
-                        }
-
-                        parkingSpot.setParkedCar(car);
+                        parkingSpot.setParkedCar(loadCar(carElement));
                     }
                     
                     parkingSpots.add(parkingSpot);
@@ -209,7 +174,30 @@ public class XMLDataStorage {
         catch(Exception e){
             e.printStackTrace();
         }
-        //TODO
+        return parkingSpots;
+    }
+    
+    private Car loadCar(Element pElement){
+        Car car = new Car(
+                                pElement.getElementsByTagName("licensePlate").item(0).getTextContent(),
+                                pElement.getElementsByTagName("color").item(0).getTextContent(),
+                                pElement.getElementsByTagName("brand").item(0).getTextContent(),
+                                pElement.getElementsByTagName("model").item(0).getTextContent()
+                                );
+
+                        SimpleDateFormat hourFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+                        String entryTimeString = pElement.getElementsByTagName("entryTime").item(0).getTextContent();
+                        String exitTimeString = pElement.getElementsByTagName("exitTime").item(0).getTextContent();
+
+                        try {
+                            car.setEntryTime(hourFormatter.parse(entryTimeString));
+                            if(!exitTimeString.isEmpty())
+                                car.setExitTime(hourFormatter.parse(exitTimeString));
+                        } catch (Exception exc) {
+                            exc.printStackTrace();
+                        }
+        return car;
     }
     
     public void loadRegisteredUsers(){

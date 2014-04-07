@@ -173,6 +173,23 @@ public class ParkingLot {
     void setClosingTime(Date nDate) {
         this.closingTime = nDate;
     }
+    
+    public void setCashDesk(CashDesk pCashDesk){
+        cashDesk = pCashDesk;
+    };
+    
+    public void setReceiptHistory(List<Receipt> pReceiptHistory){
+        receiptHistory = pReceiptHistory;
+    };
+    
+    public void setParkingSpots(List<ParkingSpot> pParkingSpots){
+        parkingSpots = pParkingSpots;
+    };
+    
+    public void setRegisteredUsers(List<User> pRegisteredUsers){
+        registeredUsers = pRegisteredUsers;
+    };
+    
 //</editor-fold>
 
     private void openParkingLot() {
