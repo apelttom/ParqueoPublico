@@ -16,7 +16,11 @@
 package model;
 
 import controller.PasswordHash;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,8 +42,8 @@ public class ParkingLot {
     private int parkSpotNumber;
     private Date openningTime;
     private Date closingTime;
-    private CashDesk cashDesk;
     private User loggedUser;
+    private CashDesk cashDesk;
     private List<Receipt> receiptHistory;
     private List<ParkingSpot> parkingSpots;
     private List<User> registeredUsers;
@@ -101,11 +105,11 @@ public class ParkingLot {
         this.address = address;
     }
 
-    String getTelephone() {
+    public String getTelephone() {
         return this.telephone;
     }
 
-    void setTelephone(String nTelephone) {
+    public void setTelephone(String nTelephone) {
         this.telephone = nTelephone;
         //TODO checking if it is telephone number
         /* for now I'm gonna leave it like this,
@@ -162,19 +166,19 @@ public class ParkingLot {
         this.parkSpotNumber = parkSpotNumber;
     }
 
-    Date getOpenningTime() {
+    public Date getOpenningTime() {
         return this.openningTime;
     }
 
-    void setOpenningTime(Date nDate) {
+    public void setOpenningTime(Date nDate) {
         this.openningTime = nDate;
     }
 
-    Date getClosingTime() {
+    public Date getClosingTime() {
         return this.closingTime;
     }
 
-    void setClosingTime(Date nDate) {
+    public void setClosingTime(Date nDate) {
         this.closingTime = nDate;
     }
 
@@ -185,28 +189,23 @@ public class ParkingLot {
     public void setLoggedUser(User loggedUser) {
         this.loggedUser = loggedUser;
     }
-    
-    public void setCashDesk(CashDesk pCashDesk){
-        cashDesk = pCashDesk;
-    };
-    
-    public void setReceiptHistory(List<Receipt> pReceiptHistory){
-        receiptHistory = pReceiptHistory;
-    };
-    
-    public void setParkingSpots(List<ParkingSpot> pParkingSpots){
-        parkingSpots = pParkingSpots;
-    };
-    
-    public void setRegisteredUsers(List<User> pRegisteredUsers){
-        registeredUsers = pRegisteredUsers;
-    };
-//</editor-fold>
 
-    public void loadContent(XMLDataStorage DBConnect) {
-        //Waiting for Adrian's class
-        //TODO implement loading content from database (XMLFile)
+    public void setCashDesk(CashDesk pCashDesk) {
+        cashDesk = pCashDesk;
     }
+
+    public void setReceiptHistory(List<Receipt> pReceiptHistory) {
+        receiptHistory = pReceiptHistory;
+    }
+
+    public void setParkingSpots(List<ParkingSpot> pParkingSpots) {
+        parkingSpots = pParkingSpots;
+    }
+
+    public void setRegisteredUsers(List<User> pRegisteredUsers) {
+        registeredUsers = pRegisteredUsers;
+    }
+//</editor-fold>
 
     public void openParkingLot() throws IllegalStateException {
         //TODO implement funcionality of openning the ParkingLot
@@ -296,13 +295,23 @@ public class ParkingLot {
 
     @Override
     public String toString() {
-        String data = "";
+        String msg = "";
 
-        data = data + name + "\n"
-                + slogan + "\n"
+        msg = msg + "Parking Lot: " + name + "\n"
+                + "Address: " + address + "\n"
                 + "Phone #: " + telephone + "\n"
+                + "Slogan: " + slogan + "\n"
                 + "Company ID: " + companyID + "\n"
-                + "Rate: " + hourlyRate;
-        return data;
+                + "Rate: " + hourlyRate + "\n";
+        if (openningTime != null && closingTime != null && cashDesk != null) {
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+            String openFrom = "Open from: " + formatter.format(openningTime);
+            String closeAt = "Close at: " + formatter.format(closingTime);
+            msg = msg
+                    + openFrom + "\n"
+                    + closeAt + "\n"
+                    + "Minimal cash to open: " + cashDesk.getMinCash() + "\n";
+        }
+        return msg;
     }
 }

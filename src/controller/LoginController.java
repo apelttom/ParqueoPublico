@@ -12,13 +12,11 @@
  * Copyright (c) 2014, Adrian Rodriguez, Saul Zamora, Tomas Apeltauer
  * Todos los derechos reservados.
  */
-
 package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.ParkingLot;
-import model.User;
 import view.LoginFrame;
 import view.ParkingLotFrame;
 
@@ -40,16 +38,6 @@ public class LoginController {
 
     public LoginController(ParkingLot modelPL, LoginFrame viewLogin) {
         this.model = modelPL;
-
-        //FOR TESTING PURPOUSES ADDING DEFAULT USER IN CONSTRUCTOR
-        try {
-            this.model.registerUser(new User(TEST_USERNAME,
-                    PasswordHash.getSaltedHash(TEST_PASSWORD)));
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-        //TODO delete after XMLparser will be able to load and save users
-
         this.view = viewLogin;
         this.view.addLoginListener(new LoginListener());
     }
@@ -72,15 +60,17 @@ public class LoginController {
             try {
                 //checks if username and password provided by user are valid
                 if (model.verifyUser(username, password)) {
-                    //valid user, now start ParkingLot
+                    //log user in
                     model.setLoggedUser(model.getRegisteredUser(username));
+                    //starting Parking lot (creating view and controller)
                     ParkingLotFrame parkingLotView = new ParkingLotFrame();
-                    ParkingLotController parkingLotController =
-                            new ParkingLotController(model, parkingLotView);
+                    ParkingLotController parkingLotController
+                            = new ParkingLotController(model, parkingLotView);
+                    //destroy LoginFrame (we don't need it anymore)
                     view.dispose();
                     parkingLotController.showParkingLot();
                 } else {
-                    //invalid user
+                    //user verification failed
                     view.displayMessage(WRONG_CREDENTIALS);
                 }
             } catch (Exception ex) {

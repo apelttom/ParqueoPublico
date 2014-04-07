@@ -18,7 +18,6 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.ParkingLot;
-import model.XMLDataStorage;
 import view.ParkingLotFrame;
 
 /**
@@ -28,18 +27,13 @@ import view.ParkingLotFrame;
  * Last modified on 06/04/2014
  */
 public class ParkingLotController {
-
-    private static final String SETTIGS_FILE = "src/data/ParkingLotInfo.xml";
     
     private ParkingLot model;
     private ParkingLotFrame view;
-    private XMLDataStorage DBConnect;
 
     public ParkingLotController(ParkingLot model, ParkingLotFrame view) {
         this.model = model;
         this.view = view;
-        this.DBConnect = new XMLDataStorage(SETTIGS_FILE);
-        this.model.loadContent(DBConnect);
         this.view.addStartPLotListener(new parkingLotStarListener());
     }
 

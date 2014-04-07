@@ -8,11 +8,10 @@
  *
  * Tarea Programada N°1
  *
- * ParkingSpot.java
+ * Main.java
  * Copyright (c) 2014, Adrian Rodriguez, Saul Zamora, Tomas Apeltauer
  * Todos los derechos reservados.
  */
-
 package main;
 
 import controller.LoginController;
@@ -29,6 +28,8 @@ import view.LoginFrame;
  */
 public class Main {
 
+    private static final String SETTIGS_FILE = "src/data/ParkingLotInfo.xml";
+
     public static final String TEST_PL_NAME = "Testing Parking Lot!";
     public static final String TEST_PL_ADDRESS = "Testing Address!";
     public static final String TEST_PL_TELEPHONE = "Testing Telephone!";
@@ -40,20 +41,23 @@ public class Main {
     public static final Date TEST_PL_CLOSING = null;
 
     public static void main(String[] args) {
-        ParkingLot parkingLotModel = new ParkingLot(TEST_PL_NAME, TEST_PL_ADDRESS,
-                TEST_PL_TELEPHONE, TEST_PL_SLOGAN, TEST_PL_COMP_ID,
-                TEST_PL_HOURLY_RATE, TEST_PL_LAST_RECEIPT, TEST_PL_OPENNING,
-                TEST_PL_CLOSING);
+        //Creating Parking Lot without XML file
+//        ParkingLot parkingLotModel = new ParkingLot(TEST_PL_NAME, TEST_PL_ADDRESS,
+//                TEST_PL_TELEPHONE, TEST_PL_SLOGAN, TEST_PL_COMP_ID,
+//                TEST_PL_HOURLY_RATE, TEST_PL_LAST_RECEIPT, TEST_PL_OPENNING,
+//                TEST_PL_CLOSING);
+        XMLDataStorage DBConnect = new XMLDataStorage(SETTIGS_FILE);
+//      =======LOADING PARKING LOT=======
+        ParkingLot parkingLotModel = DBConnect.loadParkingLotInfo();
+        parkingLotModel.setCashDesk(DBConnect.loadCashDeskInfo());
+        parkingLotModel.setReceiptHistory(DBConnect.loadReceiptHistory());
+        parkingLotModel.setParkingSpots(DBConnect.loadParkingSpots());
+        parkingLotModel.setRegisteredUsers(DBConnect.loadRegisteredUsers());
+//      =================================
         LoginFrame loginView = new LoginFrame();
         LoginController controllerLogin = new LoginController(parkingLotModel, loginView);
         controllerLogin.showLogin();
-        
-        ParkingLot parkingLotModel2 = new ParkingLot();   
-        XMLDataStorage DS = new XMLDataStorage("src/data/ParkingLotInfo.xml");
-        parkingLotModel = DS.loadParkingLotInfo();
-        
         System.out.println(parkingLotModel.toString());
-
     }
 
 }
