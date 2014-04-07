@@ -79,6 +79,7 @@ public class XMLDataStorage {
             PL.setCashDesk(loadCashDeskInfo());
             PL.setParkingSpots(loadParkingSpots());
             PL.setReceiptHistory(loadReceiptHistory());
+            PL.setRegisteredUsers(loadRegisteredUsers());
         }
         catch(Exception e){
             e.printStackTrace();
@@ -154,20 +155,20 @@ public class XMLDataStorage {
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
                     
-                    ParkingSpot parkingSpot = new ParkingSpot(
+                    ParkingSpot pParkingSpot = new ParkingSpot(
                             Integer.parseInt(eElement.getAttribute("id")),
                             eElement.getElementsByTagName("description").item(0).getTextContent()
                         );
                     
-                    parkingSpot.setOccupied(Boolean.parseBoolean(eElement.getElementsByTagName("occupied").item(0).getTextContent()));
+                    pParkingSpot.setOccupied(Boolean.parseBoolean(eElement.getElementsByTagName("occupied").item(0).getTextContent()));
                     
-                    if(parkingSpot.isOccupied()){
+                    if(pParkingSpot.isOccupied()){
                         Element carElement = (Element) eElement.getElementsByTagName("car").item(0);
 
-                        parkingSpot.setParkedCar(loadCar(carElement));
+                        pParkingSpot.setParkedCar(loadCar(carElement));
                     }
                     
-                    parkingSpots.add(parkingSpot);
+                    parkingSpots.add(pParkingSpot);
                 }
             }
         }
@@ -200,8 +201,32 @@ public class XMLDataStorage {
         return car;
     }
     
-    public void loadRegisteredUsers(){
-        //TODO
+    public List<User> loadRegisteredUsers(){
+        List<User> registeredUsers = new ArrayList<User>();
+        try{
+            Element uListElement = (Element) doc.getDocumentElement().getElementsByTagName("registeredUsers").item(0);
+            NodeList nList = uListElement.getElementsByTagName("user");
+            
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+                
+                Node nNode = nList.item(temp);
+                
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    
+                    User pUser = new User(
+                            eElement.getElementsByTagName("username").item(0).getTextContent(),
+                            eElement.getElementsByTagName("password").item(0).getTextContent()
+                        );
+                    
+                    registeredUsers.add(pUser);
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return registeredUsers;
     }
     //</editor-fold>
     

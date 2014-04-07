@@ -76,4 +76,10 @@ Todos los derechos reservados.
             <cost>3333.33</cost>
         </receipt>
     </receiptHistory>
+    <registeredUsers>
+        <user>
+            <username>test</username>
+            <password>hashedpasswordhere</password>
+        </user>
+    </registeredUsers>
 </ParkingLot>
