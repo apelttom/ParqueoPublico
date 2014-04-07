@@ -16,11 +16,8 @@
 package model;
 
 import controller.PasswordHash;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -192,6 +189,10 @@ public class ParkingLot {
 
     public void setCashDesk(CashDesk pCashDesk) {
         cashDesk = pCashDesk;
+    }
+    
+    public float getMinCash(){
+        return cashDesk.getMinCash();
     }
 
     public void setReceiptHistory(List<Receipt> pReceiptHistory) {

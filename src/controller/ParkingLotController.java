@@ -8,7 +8,7 @@
  *
  * Tarea Programada N°1
  *
- * ParkingSpot.java
+ * ParkingLotController.java
  * Copyright (c) 2014, Adrian Rodriguez, Saul Zamora, Tomas Apeltauer
  * Todos los derechos reservados.
  */
@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.ParkingLot;
 import view.ParkingLotFrame;
+import view.SettingsFrame;
 
 /**
  *
@@ -32,6 +33,7 @@ public class ParkingLotController {
 
     private ParkingLot model;
     private ParkingLotFrame view;
+    private SettingsController settingsController = null;
 
     public ParkingLotController(ParkingLot model, ParkingLotFrame view) {
         this.model = model;
@@ -40,6 +42,7 @@ public class ParkingLotController {
         this.view.addStopPLotListener(new parkingLotStopListener());
         this.view.addCarEntryListener(new carEntryListener());
         this.view.addCarExitListener(new carExitListener());
+        this.view.addSettingsListener(new settingsListener());
     }
 
     void showParkingLot() {
@@ -91,6 +94,19 @@ public class ParkingLotController {
             } else {
                 view.displayMessage(NOT_OPEN_ERROR);
             }
+        }
+    }
+
+    class settingsListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (settingsController == null) {
+                SettingsFrame settingsView = new SettingsFrame();
+                settingsController
+                        = new SettingsController(settingsView, model);
+            }
+            settingsController.showSettings();
         }
     }
 }

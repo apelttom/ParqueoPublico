@@ -33,7 +33,7 @@ public class ParkingLotFrame extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        settingsButton = new javax.swing.JButton();
         carEntryButton = new javax.swing.JButton();
         carExitButton = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -83,10 +83,10 @@ public class ParkingLotFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Settings");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        settingsButton.setText("Settings");
+        settingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                settingsButtonActionPerformed(evt);
             }
         });
 
@@ -514,7 +514,7 @@ public class ParkingLotFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(stopPLotButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(settingsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(carEntryButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(carExitButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -593,7 +593,7 @@ public class ParkingLotFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3))
+                                .addComponent(settingsButton))
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(carEntryButton))
@@ -669,11 +669,11 @@ public class ParkingLotFrame extends javax.swing.JFrame {
 //        carExit.show();
     }//GEN-LAST:event_carExitButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
         // TODO add your handling code here:
-        SettingsFrame settings = new SettingsFrame();
-        settings.show();
-    }//GEN-LAST:event_jButton3ActionPerformed
+//        SettingsFrame settings = new SettingsFrame();
+//        settings.show();
+    }//GEN-LAST:event_settingsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -714,7 +714,6 @@ public class ParkingLotFrame extends javax.swing.JFrame {
     private javax.swing.JButton carExitButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -742,10 +741,15 @@ public class ParkingLotFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JButton settingsButton;
     private javax.swing.JButton startPLotButton;
     private javax.swing.JButton stopPLotButton;
     // End of variables declaration//GEN-END:variables
 
+    public void displayMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+    
     public void addStartPLotListener(ActionListener listenForSTART) {
         startPLotButton.addActionListener(listenForSTART);
     }
@@ -762,7 +766,8 @@ public class ParkingLotFrame extends javax.swing.JFrame {
         carExitButton.addActionListener(listenForCarExit);
     }
     
-    public void displayMessage(String message) {
-        JOptionPane.showMessageDialog(this, message);
+    public void addSettingsListener(ActionListener listenForSettings) {
+        settingsButton.addActionListener(listenForSettings);
     }
+    
 }
