@@ -40,6 +40,7 @@ public class LoginController {
         this.model = modelPL;
         this.view = viewLogin;
         this.view.addLoginListener(new LoginListener());
+        this.view.addLoginByEnterListener(new LoginListener());
     }
 
     public void showLogin() {

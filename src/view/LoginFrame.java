@@ -178,6 +178,10 @@ public class LoginFrame extends javax.swing.JFrame {
     public void addLoginListener(ActionListener listenForLogin) {
         loginButton.addActionListener(listenForLogin);
     }
+    
+    public void addLoginByEnterListener(ActionListener listenForLogin) {
+        passwordField.addActionListener(listenForLogin);
+    }
 
     public void displayMessage(String message) {
         JOptionPane.showMessageDialog(this, message);

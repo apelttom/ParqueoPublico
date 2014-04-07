@@ -210,6 +210,7 @@ public class ParkingLot {
     public void openParkingLot() throws IllegalStateException {
         //TODO implement funcionality of openning the ParkingLot
         verifyStartRequirements();
+        open = true;
         System.out.println("Start Parking Lot funcionality is coming soon...");
     }
 
@@ -225,9 +226,11 @@ public class ParkingLot {
         }
     }
 
-    private void closeParkingLot() {
+    public void closeParkingLot() {
         //TODO implement funcionality of closing the ParkingLot
         //Also with verification
+        open = false;
+        System.out.println("Closing Parking Lot");
     }
 
     private void updateSettings() {

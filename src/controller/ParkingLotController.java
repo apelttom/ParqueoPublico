@@ -12,7 +12,6 @@
  * Copyright (c) 2014, Adrian Rodriguez, Saul Zamora, Tomas Apeltauer
  * Todos los derechos reservados.
  */
-
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -27,7 +26,10 @@ import view.ParkingLotFrame;
  * Last modified on 06/04/2014
  */
 public class ParkingLotController {
-    
+
+    private static final String NOT_OPEN_ERROR
+            = "Parking Lot has to be opened first!";
+
     private ParkingLot model;
     private ParkingLotFrame view;
 
@@ -35,6 +37,9 @@ public class ParkingLotController {
         this.model = model;
         this.view = view;
         this.view.addStartPLotListener(new parkingLotStarListener());
+        this.view.addStopPLotListener(new parkingLotStopListener());
+        this.view.addCarEntryListener(new carEntryListener());
+        this.view.addCarExitListener(new carExitListener());
     }
 
     void showParkingLot() {
@@ -44,17 +49,48 @@ public class ParkingLotController {
     void hideParkingLot() {
         view.setVisible(false);
     }
-    
-    class parkingLotStarListener implements ActionListener{
+
+    class parkingLotStarListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            try{
+            try {
                 model.openParkingLot();
-            }catch(IllegalStateException e){
+            } catch (IllegalStateException e) {
                 view.displayMessage(e.getMessage());
             }
         }
     }
-    
+
+    class parkingLotStopListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            model.closeParkingLot();
+        }
+    }
+
+    class carEntryListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (model.isOpen()) {
+                //TODO entry car
+            } else {
+                view.displayMessage(NOT_OPEN_ERROR);
+            }
+        }
+    }
+
+    class carExitListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (model.isOpen()) {
+                //TODO exit car   
+            } else {
+                view.displayMessage(NOT_OPEN_ERROR);
+            }
+        }
+    }
 }
