@@ -250,7 +250,7 @@ public class ParkingLot {
      * @return false if user with such username is already registered.
      */
     public boolean registerUser(User newUser) {
-        if (getRegisteredUser(newUser.getUserName()) == null) {
+        if (getRegisteredUser(newUser.getUsername()) == null) {
             registeredUsers.add(newUser);
             return true;
         }
@@ -266,7 +266,7 @@ public class ParkingLot {
      */
     public User getRegisteredUser(String username) {
         for (User user : registeredUsers) {
-            if (user.getUserName().equals(username)) {
+            if (user.getUsername().equals(username)) {
                 return user;
             }
         }
@@ -288,7 +288,7 @@ public class ParkingLot {
             throw new IllegalStateException("There are no registered users!");
         }
         for (User user : registeredUsers) {
-            if (user.getUserName().equals(username)) {
+            if (user.getUsername().equals(username)) {
                 if (PasswordHash.check(password, user.getPassword())) {
                     return true;
                 }

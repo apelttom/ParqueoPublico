@@ -27,6 +27,7 @@ public class User {
     private String username;
     //pasword has to be hashed in all times!
     private String password;
+    private boolean administrador;
 
     /**
      * Creates new user according to the parameters.
@@ -35,17 +36,18 @@ public class User {
      * @param password NEVER use plain text! Always pass hashed password. For
      * this use class PasswordHash
      */
-    public User(String username, String password) {
+    public User(String username, String password, boolean administrador) {
         this.username = username;
         this.password = password;
+        this.administrador = administrador;
     }
 
-    public String getUserName() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUserName(String userName) {
-        this.username = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -54,6 +56,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
     }
 
     @Override

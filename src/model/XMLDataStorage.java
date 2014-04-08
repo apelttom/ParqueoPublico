@@ -216,7 +216,8 @@ public class XMLDataStorage {
                     
                     User pUser = new User(
                             eElement.getElementsByTagName("username").item(0).getTextContent(),
-                            eElement.getElementsByTagName("password").item(0).getTextContent()
+                            eElement.getElementsByTagName("password").item(0).getTextContent(),
+                            Boolean.parseBoolean(eElement.getElementsByTagName("administrador").item(0).getTextContent())
                         );
                     
                     registeredUsers.add(pUser);

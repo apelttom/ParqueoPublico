@@ -54,7 +54,7 @@ public class SettingsFrame extends javax.swing.JFrame {
         minCashField = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        IDfield = new javax.swing.JTextField();
+        companyIDField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Parking Lot Software Assistent");
@@ -107,7 +107,7 @@ public class SettingsFrame extends javax.swing.JFrame {
 
         jLabel9.setText("Company ID");
 
-        IDfield.setText("jTextField1");
+        companyIDField.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,7 +124,7 @@ public class SettingsFrame extends javax.swing.JFrame {
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel9)
-                                    .addComponent(IDfield, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(companyIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -188,7 +188,7 @@ public class SettingsFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(IDfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(companyIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -258,9 +258,9 @@ public class SettingsFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IDfield;
     private javax.swing.JTextArea addressTextArea;
     private javax.swing.JFormattedTextField closeAtField;
+    private javax.swing.JTextField companyIDField;
     private javax.swing.JTextField hourlyRateField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -296,6 +296,10 @@ public class SettingsFrame extends javax.swing.JFrame {
 
     public void setSlogan(String slogan) {
         sloganTextArea.setText(slogan);
+    }
+    
+    public void setCompanyID(String companyID) {
+        companyIDField.setText(companyID);
     }
 
     public void setHourlyRate(float rate) {

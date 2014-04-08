@@ -80,6 +80,12 @@ Todos los derechos reservados.
         <user>
             <username>admin</username>
             <password>ifYXoJVXU0G8/EnKWaXV4SHEEz/nfwd2MUR7id8X42Y=$hNuRL6kJ61xpt0xGjlEjuD1Qw18oYzWEatjxb8U4aoU=</password>
+            <administrador>true</administrador>
+        </user>
+        <user>
+            <username>user1</username>
+            <password>ifYXoJVXU0G8/EnKWaXV4SHEEz/nfwd2MUR7id8X42Y=\$ntgtpnQ1Qph14Hvl1Q8Y65oyTcgpJ+4Vsb2fmbx/p/o=</password>
+            <administrador>false</administrador>
         </user>
     </registeredUsers>
 </ParkingLot>

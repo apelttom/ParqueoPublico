@@ -28,8 +28,12 @@ import view.SettingsFrame;
  */
 public class ParkingLotController {
 
-    private static final String NOT_OPEN_ERROR
+    private static final String PARKING_LOT_NOT_OPEN_ERROR
             = "Parking Lot has to be opened first!";
+    private static final String NOT_ADMIN_ERROR
+            = "You need administrador rights for this operation!";
+    private static final String PARKING_LOT_OPEN_ERROR
+            = "You cannot change settings if parking lot is open!";
 
     private ParkingLot model;
     private ParkingLotFrame view;
@@ -80,7 +84,7 @@ public class ParkingLotController {
             if (model.isOpen()) {
                 //TODO entry car
             } else {
-                view.displayMessage(NOT_OPEN_ERROR);
+                view.displayMessage(PARKING_LOT_NOT_OPEN_ERROR);
             }
         }
     }
@@ -92,7 +96,7 @@ public class ParkingLotController {
             if (model.isOpen()) {
                 //TODO exit car   
             } else {
-                view.displayMessage(NOT_OPEN_ERROR);
+                view.displayMessage(PARKING_LOT_NOT_OPEN_ERROR);
             }
         }
     }
@@ -101,12 +105,20 @@ public class ParkingLotController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (settingsController == null) {
-                SettingsFrame settingsView = new SettingsFrame();
-                settingsController
-                        = new SettingsController(settingsView, model);
+            if (model.getLoggedUser().isAdministrador()) {
+                if (!model.isOpen()) {
+                    if (settingsController == null) {
+                        SettingsFrame settingsView = new SettingsFrame();
+                        settingsController
+                                = new SettingsController(settingsView, model);
+                    }
+                    settingsController.showSettings();
+                } else {
+                    view.displayMessage(PARKING_LOT_OPEN_ERROR);
+                }
+            } else {
+                view.displayMessage(NOT_ADMIN_ERROR);
             }
-            settingsController.showSettings();
         }
     }
 }

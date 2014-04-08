@@ -47,6 +47,7 @@ public class SettingsController {
         view.setAddress(model.getAddress());
         view.setTelephone(model.getTelephone());
         view.setSlogan(model.getSlogan());
+        view.setCompanyID(model.getCompanyID());
         view.setHourlyRate(model.getHourlyRate());
         view.setOpenFrom(model.getOpenningTime());
         view.setCloseAt(model.getClosingTime());
