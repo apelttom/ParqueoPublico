@@ -18,6 +18,14 @@ package model;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -232,20 +240,110 @@ public class XMLDataStorage {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Save Methods">
-    public void saveParkingLotInfo(){
+    public void saveParkingLotInfo(ParkingLot pParkingLot) throws TransformerException{
+        Document newDoc = dBuilder.newDocument();
+        Element parkingLot = newDoc.createElement("ParkingLot");
+        newDoc.appendChild(parkingLot);
+        
+        SimpleDateFormat hourFormatter = new SimpleDateFormat("HH:mm:ss");
+        
+        Element name = newDoc.createElement("name");
+        parkingLot.appendChild(name);
+        name.appendChild(newDoc.createTextNode(pParkingLot.getName()));
+        
+        Element address = newDoc.createElement("address");
+        parkingLot.appendChild(address);
+        address.appendChild(newDoc.createTextNode(pParkingLot.getAddress()));
+        
+        Element telephone = newDoc.createElement("telephone");
+        parkingLot.appendChild(telephone);
+        telephone.appendChild(newDoc.createTextNode(pParkingLot.getTelephone()));
+        
+        Element slogan = newDoc.createElement("slogan");
+        parkingLot.appendChild(slogan);
+        slogan.appendChild(newDoc.createTextNode(pParkingLot.getSlogan()));
+        
+        Element companyID = newDoc.createElement("companyID");
+        parkingLot.appendChild(companyID);
+        companyID.appendChild(newDoc.createTextNode(pParkingLot.getCompanyID()));
+        
+        Element hourlyRate = newDoc.createElement("hourlyRate");
+        parkingLot.appendChild(hourlyRate);
+        hourlyRate.appendChild(newDoc.createTextNode(String.valueOf(pParkingLot.getHourlyRate())));
+        
+        Element lastReceiptNumber = newDoc.createElement("lastReceiptNumber");
+        parkingLot.appendChild(lastReceiptNumber);
+        lastReceiptNumber.appendChild(newDoc.createTextNode(String.valueOf(pParkingLot.getLastReceiptNumber())));
+        
+        Element parkSpotNumber = newDoc.createElement("parkSpotNumber");
+        parkingLot.appendChild(parkSpotNumber);
+        parkSpotNumber.appendChild(newDoc.createTextNode(String.valueOf(pParkingLot.getParkSpotNumber())));
+        
+        Element openningTime = newDoc.createElement("openningTime");
+        parkingLot.appendChild(openningTime);
+        openningTime.appendChild(newDoc.createTextNode(hourFormatter.format(pParkingLot.getOpenningTime())));
+        
+        Element closingTime = newDoc.createElement("closingTime");
+        parkingLot.appendChild(closingTime);
+        closingTime.appendChild(newDoc.createTextNode(hourFormatter.format(pParkingLot.getClosingTime())));
+        
+        
+        // Save CashDesk Information
+        CashDesk CD = pParkingLot.getCashDesk();
+        
+        Element cashDesk = newDoc.createElement("cashDesk");
+        parkingLot.appendChild(cashDesk);
+        Element actualCash = newDoc.createElement("actualCash");
+        Element minCash = newDoc.createElement("minCash");
+        cashDesk.appendChild(actualCash);
+        cashDesk.appendChild(minCash);
+        actualCash.appendChild(newDoc.createTextNode(String.valueOf(pParkingLot.getParkSpotNumber())));
+        minCash.appendChild(newDoc.createTextNode(String.valueOf(pParkingLot.getParkSpotNumber())));
+        
+        
+        
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+        DOMSource source = new DOMSource(newDoc);
+        //StreamResult result = new StreamResult(new File(rutaArchivo));
+                
+        // esto es para imprimir en pantalla en lugar de archivo
+        StreamResult result = new StreamResult(System.out);
+        
+        transformer.transform(source, result);
         //TODO
     }
     
     public void saveCashDeskInfo(){
-        //TODO
     }
     
     public void saveReceiptHistory(){
         //TODO
     }
     
-    public void saveParkingSpots(){
-        //TODO
+    public void saveParkingSpots(List<ParkingSpot> pParkingSpots){
+        /*
+        NodeList parkingSpots = doc.getElementsByTagName("parkingSpotList").item(0).getChildNodes();
+        
+        parkingSpots.
+        
+        for (int i = 0; i < pParkingSpots.size(); i++) {
+            Element nombre = parkingSpots.createElement("nombre");
+            if (espacios.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                espacios.item(i).setTextContent("Reservado");
+            }
+        }
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+        DOMSource source = new DOMSource(document);
+        StreamResult result = new StreamResult(new File(rutaArchivo));
+                
+        transformer.transform(source, result);*/
     }
     
     public void saveRegisteredUsers(){

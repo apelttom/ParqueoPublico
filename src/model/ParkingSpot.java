@@ -27,6 +27,13 @@ public class ParkingSpot {
     private boolean occupied;
     private Car parkedCar;
     
+    public ParkingSpot(){
+        this.spotNumber = 0;
+        this.description = "";
+        this.occupied = false;
+        this.parkedCar = null;
+    }
+    
     // Constructor
     public ParkingSpot(int pSpotNumber, String description)
     {

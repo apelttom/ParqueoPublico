@@ -15,6 +15,7 @@
 package main;
 
 import controller.LoginController;
+import javax.xml.transform.TransformerException;
 import model.ParkingLot;
 import model.XMLDataStorage;
 import view.LoginFrame;
@@ -27,10 +28,10 @@ import view.LoginFrame;
  */
 public class Main {
 
-    private static final String SETTIGS_FILE = "src/data/ParkingLotInfo.xml";
+    private static final String SETTINGS_FILE = "src/data/ParkingLotInfo.xml";
 
-    public static void main(String[] args) {
-        XMLDataStorage DBConnect = new XMLDataStorage(SETTIGS_FILE);
+    public static void main(String[] args) throws TransformerException {
+        XMLDataStorage DBConnect = new XMLDataStorage(SETTINGS_FILE);
 //      =======LOADING PARKING LOT=======
         ParkingLot parkingLotModel = DBConnect.loadParkingLotInfo();
         parkingLotModel.setCashDesk(DBConnect.loadCashDeskInfo());
@@ -38,10 +39,15 @@ public class Main {
         parkingLotModel.setParkingSpots(DBConnect.loadParkingSpots());
         parkingLotModel.setRegisteredUsers(DBConnect.loadRegisteredUsers());
 //      =================================
+        parkingLotModel.addParkingSpot();
+        parkingLotModel.setName("Parqueo Morazán");
+        DBConnect.saveParkingLotInfo(parkingLotModel);
+        /*
         LoginFrame loginView = new LoginFrame();
         LoginController controllerLogin = new LoginController(parkingLotModel, loginView);
         controllerLogin.showLogin();
         System.out.println(parkingLotModel.toString());
+                */
     }
 
 }

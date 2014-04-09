@@ -241,6 +241,11 @@ public class ParkingLot {
     private void verificateAdmin() {
         //TODO implement method for verification of admin account and password
     }
+    
+    public void addParkingSpot(){
+        ParkingSpot pParkingSpot = new ParkingSpot(parkingSpots.size(), "");
+        parkingSpots.add(pParkingSpot);
+    }
 
     /**
      * Add new User object between registered users.
