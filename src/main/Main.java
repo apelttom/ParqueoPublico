@@ -28,10 +28,8 @@ import view.LoginFrame;
  */
 public class Main {
 
-    private static final String SETTINGS_FILE = "src/data/ParkingLotInfo.xml";
-
     public static void main(String[] args) throws TransformerException {
-        XMLDataStorage DBConnect = new XMLDataStorage(SETTINGS_FILE);
+        XMLDataStorage DBConnect = XMLDataStorage.getInstance();
 //      =======LOADING PARKING LOT=======
         ParkingLot parkingLotModel = DBConnect.loadParkingLotInfo();
         parkingLotModel.setCashDesk(DBConnect.loadCashDeskInfo());
@@ -42,12 +40,12 @@ public class Main {
         parkingLotModel.addParkingSpot();
         parkingLotModel.setName("Parqueo Morazán");
         DBConnect.saveParkingLotInfo(parkingLotModel);
-        /*
+
         LoginFrame loginView = new LoginFrame();
         LoginController controllerLogin = new LoginController(parkingLotModel, loginView);
         controllerLogin.showLogin();
         System.out.println(parkingLotModel.toString());
-                */
+                
     }
 
 }

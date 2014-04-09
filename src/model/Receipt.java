@@ -8,7 +8,7 @@
  *
  * Tarea Programada N°1
  *
- * Bill.java
+ * Receipt.java
  * Creado a las 6:39:08 PM del 22/03/2014
  * Copyright (c) 2014, Adrian Rodriguez, Saul Zamora, Tomas Apeltauer
  * Todos los derechos reservados.

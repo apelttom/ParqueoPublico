@@ -190,9 +190,17 @@ public class ParkingLot {
     public void setCashDesk(CashDesk pCashDesk) {
         cashDesk = pCashDesk;
     }
-    
-    public float getMinCash(){
+
+    public CashDesk getCashDesk() {
+        return cashDesk;
+    }
+
+    public float getMinCash() {
         return cashDesk.getMinCash();
+    }
+    
+    public void setMinCash(float minCash){
+        cashDesk.setMinCash(minCash);
     }
 
     public void setReceiptHistory(List<Receipt> pReceiptHistory) {
@@ -241,8 +249,8 @@ public class ParkingLot {
     private void verificateAdmin() {
         //TODO implement method for verification of admin account and password
     }
-    
-    public void addParkingSpot(){
+
+    public void addParkingSpot() {
         ParkingSpot pParkingSpot = new ParkingSpot(parkingSpots.size(), "");
         parkingSpots.add(pParkingSpot);
     }
