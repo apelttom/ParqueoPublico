@@ -279,9 +279,16 @@ public class ParkingLot {
                 pCar.setExitTime(new Date());
                 PS.setParkedCar(null);
                 PS.setOccupied(false);
+                chargeCar(pCar);
                 found = true;
             }
         }
+    }
+    
+    private void chargeCar(Car pCar){
+        long diff = pCar.getExitTime().getTime() - pCar.getEntryTime().getTime();
+        long cicles = (long)Math.ceil(diff/(15*1000));
+        System.out.println("Precio: "+cicles*hourlyRate);
     }
 
     private void updateSettings() {

@@ -40,8 +40,8 @@ public class Main {
         //parkingLotModel.addParkingSpot();
         //parkingLotModel.addParkingSpot();
         //parkingLotModel.setName("Parqueo Morazán");
-        parkingLotModel.carEntry("fdg064", "verde", "Hyundai", "Elantra");
-        //parkingLotModel.carExit("jdf456");
+        //parkingLotModel.carEntry("fdg064", "verde", "Hyundai", "Elantra");
+        parkingLotModel.carExit("fdg064");
         DBConnect.saveParkingLotInfo(parkingLotModel);
         /*
         LoginFrame loginView = new LoginFrame();

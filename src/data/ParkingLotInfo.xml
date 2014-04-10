@@ -29,15 +29,8 @@
         </parkingSpot>
         <parkingSpot id="2">
             <description/>
-            <occupied>true</occupied>
-            <car>
-                <licensePlate>fdg064</licensePlate>
-                <color>verde</color>
-                <brand>Hyundai</brand>
-                <model>Elantra</model>
-                <entryTime>10/04/2014 04:51:41</entryTime>
-                <exitTime/>
-            </car>
+            <occupied>false</occupied>
+            <car/>
         </parkingSpot>
         <parkingSpot id="3">
             <description/>
