@@ -170,11 +170,13 @@ public class XMLDataStorage {
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-
+                    
                     ParkingSpot pParkingSpot = new ParkingSpot(
                             Integer.parseInt(eElement.getAttribute("id")),
                             eElement.getElementsByTagName("description").item(0).getTextContent()
                     );
+                    
+                    System.out.println("Ocupado: " + eElement.getElementsByTagName("occupied").item(0).getTextContent());
 
                     pParkingSpot.setOccupied(Boolean.parseBoolean(eElement.getElementsByTagName("occupied").item(0).getTextContent()));
 
@@ -253,6 +255,8 @@ public class XMLDataStorage {
         newDoc.appendChild(parkingLot);
 
         SimpleDateFormat hourFormatter = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat datetimeFormatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
         Element name = newDoc.createElement("name");
         parkingLot.appendChild(name);
@@ -311,17 +315,127 @@ public class XMLDataStorage {
         Element eParkingSpotList = newDoc.createElement("parkingSpotList");
         parkingLot.appendChild(eParkingSpotList);
         for(int i = 0; i < PSList.size(); i++){
+            
             Element eParkingSpot = newDoc.createElement("parkingSpot");
             ParkingSpot pParkingSpot = PSList.get(i);
             eParkingSpot.setAttribute("id", String.valueOf(pParkingSpot.getSpotNumber()));
+            
             Element eDescription = newDoc.createElement("description");
-            eDescription.appendChild(newDoc.createTextNode(pParkingSpot.getDescription()));
+            if(pParkingSpot.getDescription() != null)
+                eDescription.appendChild(newDoc.createTextNode(pParkingSpot.getDescription()));
+            else
+                eDescription.appendChild(newDoc.createTextNode(""));
             eParkingSpot.appendChild(eDescription);
+            
             Element eOcuppied = newDoc.createElement("ocuppied");
             eOcuppied.appendChild(newDoc.createTextNode(String.valueOf(pParkingSpot.isOccupied())));
             eParkingSpot.appendChild(eOcuppied);
+            
+            Element eCar = newDoc.createElement("car");
+            Car pCar = pParkingSpot.getParkedCar();
+            if(pCar != null){
+            Element eLicensePlate = newDoc.createElement("licensePlate");
+            eLicensePlate.appendChild(newDoc.createTextNode(pCar.getLicensePlate()));
+            eCar.appendChild(eLicensePlate);
+            
+            Element eColor = newDoc.createElement("color");
+            eColor.appendChild(newDoc.createTextNode(pCar.getColor()));
+            eCar.appendChild(eColor);
+            
+            Element eBrand = newDoc.createElement("brand");
+            eBrand.appendChild(newDoc.createTextNode(pCar.getBrand()));
+            eCar.appendChild(eBrand);
+            
+            Element eModel = newDoc.createElement("model");
+            eModel.appendChild(newDoc.createTextNode(pCar.getModel()));
+            eCar.appendChild(eModel);
+            
+            Element eEntryTime = newDoc.createElement("entryTime");
+            eEntryTime.appendChild(newDoc.createTextNode(datetimeFormatter.format(pCar.getEntryTime())));
+            eCar.appendChild(eEntryTime);
+            
+            Element eExitTime = newDoc.createElement("exitTime");
+            if(pCar.getExitTime() != null)
+                eExitTime.appendChild(newDoc.createTextNode(datetimeFormatter.format(pCar.getExitTime())));
+            eCar.appendChild(eExitTime);
+            }
+            else
+                eCar.appendChild(newDoc.createTextNode(""));
+            eParkingSpot.appendChild(eCar);
+            
             eParkingSpotList.appendChild(eParkingSpot);
             
+        }
+        
+        // Save Receipt History List Information
+        List<Receipt> RHList = pParkingLot.getReceiptHistory();
+        Element eReceiptHistoryList = newDoc.createElement("receiptHistory");
+        parkingLot.appendChild(eReceiptHistoryList);
+        for(int i = 0; i < RHList.size(); i++){
+            Element eReceipt = newDoc.createElement("receipt");
+            Receipt pReceipt = RHList.get(i);
+            
+            eReceipt.setAttribute("id", String.valueOf(pReceipt.getReceiptID()));
+            
+            Element eDate = newDoc.createElement("date");
+            eDate.appendChild(newDoc.createTextNode(dateFormatter.format(pReceipt.getDate())));
+            eReceipt.appendChild(eDate);
+            
+            Element eCar = newDoc.createElement("car");
+            Car pCar = pReceipt.getChargedCar();
+            Element eLicensePlate = newDoc.createElement("licensePlate");
+            eLicensePlate.appendChild(newDoc.createTextNode(pCar.getLicensePlate()));
+            eCar.appendChild(eLicensePlate);
+            
+            Element eColor = newDoc.createElement("color");
+            eColor.appendChild(newDoc.createTextNode(pCar.getColor()));
+            eCar.appendChild(eColor);
+            
+            Element eBrand = newDoc.createElement("brand");
+            eBrand.appendChild(newDoc.createTextNode(pCar.getBrand()));
+            eCar.appendChild(eBrand);
+            
+            Element eModel = newDoc.createElement("model");
+            eModel.appendChild(newDoc.createTextNode(pCar.getModel()));
+            eCar.appendChild(eModel);
+            
+            Element eEntryTime = newDoc.createElement("entryTime");
+            eEntryTime.appendChild(newDoc.createTextNode(datetimeFormatter.format(pCar.getEntryTime())));
+            eCar.appendChild(eEntryTime);
+            
+            Element eExitTime = newDoc.createElement("exitTime");
+            eExitTime.appendChild(newDoc.createTextNode(datetimeFormatter.format(pCar.getExitTime())));
+            eCar.appendChild(eExitTime);
+            eReceipt.appendChild(eCar);
+            
+            Element eCost = newDoc.createElement("cost");
+            eCost.appendChild(newDoc.createTextNode(String.valueOf(pReceipt.getCost())));
+            eReceipt.appendChild(eCost);
+            eReceiptHistoryList.appendChild(eReceipt);
+            
+        }
+        
+        // Save Receipt History List Information
+        List<User> RUList = pParkingLot.getRegisteredUsers();
+        Element eRegisteredUsersList = newDoc.createElement("registeredUsers");
+        parkingLot.appendChild(eRegisteredUsersList);
+        for(int i = 0; i < RUList.size(); i++){
+            Element eUser = newDoc.createElement("user");
+            User pUser = RUList.get(i);
+            
+            Element eUsername = newDoc.createElement("username");
+            eUsername.appendChild(newDoc.createTextNode(String.valueOf(pUser.getUsername())));
+            eUser.appendChild(eUsername);
+            
+            Element ePassword = newDoc.createElement("password");
+            ePassword.appendChild(newDoc.createTextNode(String.valueOf(pUser.getPassword())));
+            eUser.appendChild(ePassword);
+            
+            Element eAdministador = newDoc.createElement("administrador");
+            eAdministador.appendChild(newDoc.createTextNode(String.valueOf(pUser.isAdministrador())));
+            eUser.appendChild(eAdministador);
+            
+            eRegisteredUsersList.appendChild(eUser);
         }
         
 
@@ -332,10 +446,10 @@ public class XMLDataStorage {
             //TODO should be CONSTANT (private static final String attributes)
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
             DOMSource source = new DOMSource(newDoc);
-            //StreamResult result = new StreamResult(new File(rutaArchivo));
+            StreamResult result = new StreamResult(fXmlFile);
 
             // esto es para imprimir en pantalla en lugar de archivo
-            StreamResult result = new StreamResult(System.out);
+            //StreamResult result = new StreamResult(System.out);
 
             transformer.transform(source, result);
         } catch (TransformerException ex) {

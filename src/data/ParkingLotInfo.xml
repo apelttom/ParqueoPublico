@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Instituto Tecnologico de Costa Rica
 Escuela de Ingenieria en Computacion
@@ -34,8 +34,7 @@ Todos los derechos reservados.
         <parkingSpot id="1">
             <description></description>
             <occupied>false</occupied>
-            <car>
-            </car>
+            <car></car>
         </parkingSpot>
         <parkingSpot id="2">
             <description></description>

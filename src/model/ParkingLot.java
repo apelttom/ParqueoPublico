@@ -222,6 +222,10 @@ public class ParkingLot {
     public void setRegisteredUsers(List<User> pRegisteredUsers) {
         registeredUsers = pRegisteredUsers;
     }
+    
+    public List<User> getRegisteredUsers() {
+        return registeredUsers;
+    }
 //</editor-fold>
 
     public void openParkingLot() throws IllegalStateException {
