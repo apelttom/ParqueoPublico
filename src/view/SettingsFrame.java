@@ -60,6 +60,7 @@ public class SettingsFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Parking Lot Software Assistent");
+        setResizable(false);
 
         jButton1.setText("Close");
         jButton1.setToolTipText("");

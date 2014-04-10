@@ -36,6 +36,7 @@ public class CarExitFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Parking Lot Software Assistent");
+        setResizable(false);
 
         jButton2.setText("Save");
 
