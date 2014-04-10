@@ -191,6 +191,10 @@ public class ParkingLot {
         cashDesk = pCashDesk;
     }
     
+    public CashDesk getCashDesk(){
+        return cashDesk;
+    }
+    
     public float getMinCash(){
         return cashDesk.getMinCash();
     }
@@ -201,6 +205,10 @@ public class ParkingLot {
 
     public void setParkingSpots(List<ParkingSpot> pParkingSpots) {
         parkingSpots = pParkingSpots;
+    }
+    
+    public List<ParkingSpot> getParkingSpots() {
+        return parkingSpots;
     }
 
     public void setRegisteredUsers(List<User> pRegisteredUsers) {
@@ -243,7 +251,7 @@ public class ParkingLot {
     }
     
     public void addParkingSpot(){
-        ParkingSpot pParkingSpot = new ParkingSpot(parkingSpots.size(), "");
+        ParkingSpot pParkingSpot = new ParkingSpot(parkingSpots.size()+1, "");
         parkingSpots.add(pParkingSpot);
     }
 

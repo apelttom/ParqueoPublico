@@ -297,10 +297,26 @@ public class XMLDataStorage {
         Element minCash = newDoc.createElement("minCash");
         cashDesk.appendChild(actualCash);
         cashDesk.appendChild(minCash);
-        actualCash.appendChild(newDoc.createTextNode(String.valueOf(pParkingLot.getParkSpotNumber())));
-        minCash.appendChild(newDoc.createTextNode(String.valueOf(pParkingLot.getParkSpotNumber())));
+        actualCash.appendChild(newDoc.createTextNode(String.valueOf(CD.getActualCash())));
+        minCash.appendChild(newDoc.createTextNode(String.valueOf(CD.getMinCash())));
         
-        
+        // Save Parking Spot List Information
+        List<ParkingSpot> PSList = pParkingLot.getParkingSpots();
+        Element eParkingSpotList = newDoc.createElement("parkingSpotList");
+        parkingLot.appendChild(eParkingSpotList);
+        for(int i = 0; i < PSList.size(); i++){
+            Element eParkingSpot = newDoc.createElement("parkingSpot");
+            ParkingSpot pParkingSpot = PSList.get(i);
+            eParkingSpot.setAttribute("id", String.valueOf(pParkingSpot.getSpotNumber()));
+            Element eDescription = newDoc.createElement("description");
+            eDescription.appendChild(newDoc.createTextNode(pParkingSpot.getDescription()));
+            eParkingSpot.appendChild(eDescription);
+            Element eOcuppied = newDoc.createElement("ocuppied");
+            eOcuppied.appendChild(newDoc.createTextNode(String.valueOf(pParkingSpot.isOccupied())));
+            eParkingSpot.appendChild(eOcuppied);
+            eParkingSpotList.appendChild(eParkingSpot);
+            
+        }
         
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();

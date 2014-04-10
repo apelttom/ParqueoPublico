@@ -40,6 +40,7 @@ public class Main {
         parkingLotModel.setRegisteredUsers(DBConnect.loadRegisteredUsers());
 //      =================================
         parkingLotModel.addParkingSpot();
+        parkingLotModel.addParkingSpot();
         parkingLotModel.setName("Parqueo Morazán");
         DBConnect.saveParkingLotInfo(parkingLotModel);
         /*
