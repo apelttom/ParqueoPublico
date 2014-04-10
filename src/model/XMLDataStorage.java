@@ -175,8 +175,6 @@ public class XMLDataStorage {
                             Integer.parseInt(eElement.getAttribute("id")),
                             eElement.getElementsByTagName("description").item(0).getTextContent()
                     );
-                    
-                    System.out.println("Ocupado: " + eElement.getElementsByTagName("occupied").item(0).getTextContent());
 
                     pParkingSpot.setOccupied(Boolean.parseBoolean(eElement.getElementsByTagName("occupied").item(0).getTextContent()));
 

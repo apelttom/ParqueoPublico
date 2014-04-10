@@ -253,6 +253,36 @@ public class ParkingLot {
         open = false;
         System.out.println("Closing Parking Lot");
     }
+    
+    public void carEntry(String pPlate, String pColor, String pBrand, String pModel){
+        Car pCar = new Car(pPlate, pColor, pBrand, pModel);
+        pCar.setEntryTime(new Date());
+        Boolean isParked = false;
+        for(int i=0;i<parkingSpots.size()&!isParked;i++){
+            ParkingSpot PS = parkingSpots.get(i);
+            if(!PS.isOccupied()){
+                PS.setParkedCar(pCar);
+                PS.setOccupied(true);
+                isParked= true;
+                System.out.println(printTicket(pCar));
+            }
+        }
+        
+    }
+    
+    public void carExit(String pPlate){
+        Boolean found = false;
+        for(int i=0;i<parkingSpots.size()&!found;i++){
+            ParkingSpot PS = parkingSpots.get(i);
+            Car pCar = PS.getParkedCar();
+            if(pPlate.equalsIgnoreCase(pCar.getLicensePlate())){
+                pCar.setExitTime(new Date());
+                PS.setParkedCar(null);
+                PS.setOccupied(false);
+                found = true;
+            }
+        }
+    }
 
     private void updateSettings() {
         //TODO implement method for saving settings (calling XMLdataStorage)
@@ -320,6 +350,19 @@ public class ParkingLot {
             }
         }
         return false;
+    }
+    
+    public String printTicket(Car pCar){
+        String msg = "";
+        msg = msg + "Parking Lot: " + name + "\n"
+                + "Address: " + address + "\n"
+                + "Phone #: " + telephone + "\n"
+                + "Slogan: " + slogan + "\n"
+                + "Company ID: " + companyID + "\n"
+                + "Rate: " + hourlyRate + "\n"
+                + pCar.toString() + "\n"
+                + "Show this ticket when you are leaving the parking lot";
+        return msg;
     }
 
     @Override

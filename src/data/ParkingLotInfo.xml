@@ -2,7 +2,7 @@
 <ParkingLot>
     <name>Parqueo Morazán</name>
     <address>Insert random address here</address>
-    <telephone>Insert random telephone here</telephone>
+    <telephone>22552244</telephone>
     <slogan>Insert random slogan here</slogan>
     <companyID>Insert random companyID here</companyID>
     <hourlyRate>5.55</hourlyRate>
@@ -17,23 +17,51 @@
     <parkingSpotList>
         <parkingSpot id="1">
             <description/>
-            <occupied>false</occupied>
-            <car/>
+            <occupied>true</occupied>
+            <car>
+                <licensePlate>asd432</licensePlate>
+                <color>rojo</color>
+                <brand>Ferrari</brand>
+                <model>Enzo</model>
+                <entryTime>10/04/2014 04:21:52</entryTime>
+                <exitTime/>
+            </car>
         </parkingSpot>
         <parkingSpot id="2">
             <description/>
-            <occupied>false</occupied>
-            <car/>
+            <occupied>true</occupied>
+            <car>
+                <licensePlate>fdg064</licensePlate>
+                <color>verde</color>
+                <brand>Hyundai</brand>
+                <model>Elantra</model>
+                <entryTime>10/04/2014 04:51:41</entryTime>
+                <exitTime/>
+            </car>
         </parkingSpot>
         <parkingSpot id="3">
             <description/>
-            <occupied>false</occupied>
-            <car/>
+            <occupied>true</occupied>
+            <car>
+                <licensePlate>gfs956</licensePlate>
+                <color>azul</color>
+                <brand>Lamborghini</brand>
+                <model>Murcielago</model>
+                <entryTime>10/04/2014 04:30:55</entryTime>
+                <exitTime/>
+            </car>
         </parkingSpot>
         <parkingSpot id="4">
             <description/>
-            <occupied>false</occupied>
-            <car/>
+            <occupied>true</occupied>
+            <car>
+                <licensePlate>fdg064</licensePlate>
+                <color>verde</color>
+                <brand>Hyundai</brand>
+                <model>Elantra</model>
+                <entryTime>10/04/2014 04:49:58</entryTime>
+                <exitTime/>
+            </car>
         </parkingSpot>
         <parkingSpot id="5">
             <description/>
@@ -51,6 +79,16 @@
             <car/>
         </parkingSpot>
         <parkingSpot id="8">
+            <description/>
+            <occupied>false</occupied>
+            <car/>
+        </parkingSpot>
+        <parkingSpot id="9">
+            <description/>
+            <occupied>false</occupied>
+            <car/>
+        </parkingSpot>
+        <parkingSpot id="10">
             <description/>
             <occupied>false</occupied>
             <car/>

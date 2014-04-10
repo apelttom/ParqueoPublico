@@ -37,15 +37,18 @@ public class Main {
         parkingLotModel.setParkingSpots(DBConnect.loadParkingSpots());
         parkingLotModel.setRegisteredUsers(DBConnect.loadRegisteredUsers());
 //      =================================
-        parkingLotModel.addParkingSpot();
-        parkingLotModel.addParkingSpot();
-        parkingLotModel.setName("Parqueo Morazán");
+        //parkingLotModel.addParkingSpot();
+        //parkingLotModel.addParkingSpot();
+        //parkingLotModel.setName("Parqueo Morazán");
+        parkingLotModel.carEntry("fdg064", "verde", "Hyundai", "Elantra");
+        //parkingLotModel.carExit("jdf456");
         DBConnect.saveParkingLotInfo(parkingLotModel);
-/*
+        /*
         LoginFrame loginView = new LoginFrame();
         LoginController controllerLogin = new LoginController(parkingLotModel, loginView);
         controllerLogin.showLogin();
-        System.out.println(parkingLotModel.toString());*/
+        System.out.println(parkingLotModel.toString());
+                */
                 
     }
 
