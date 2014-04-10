@@ -190,17 +190,25 @@ public class ParkingLot {
     public void setCashDesk(CashDesk pCashDesk) {
         cashDesk = pCashDesk;
     }
-    
-    public CashDesk getCashDesk(){
+
+    public CashDesk getCashDesk() {
         return cashDesk;
     }
-    
-    public float getMinCash(){
+
+    public float getMinCash() {
         return cashDesk.getMinCash();
+    }
+    
+    public void setMinCash(float minCash){
+        cashDesk.setMinCash(minCash);
     }
 
     public void setReceiptHistory(List<Receipt> pReceiptHistory) {
         receiptHistory = pReceiptHistory;
+    }
+    
+    public List<Receipt> getReceiptHistory() {
+        return receiptHistory;
     }
 
     public void setParkingSpots(List<ParkingSpot> pParkingSpots) {

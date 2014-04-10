@@ -14,7 +14,13 @@
  */
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import javax.xml.transform.TransformerException;
+import java.text.SimpleDateFormat;
 import model.ParkingLot;
+import model.XMLDataStorage;
 import view.SettingsFrame;
 
 /**
@@ -25,6 +31,12 @@ import view.SettingsFrame;
  */
 public class SettingsController {
 
+    private static final String WRONG_NUMBER_FORMAT
+            = "Hourly fee and Minimal cash fields have to contain numbers.";
+    private static final String WRONG_DAYTIME_FORMAT
+            = "Please insert openning and closing hours in 24 hour format:\n"
+            + "Hours:Minutes:Seconds";
+
     private ParkingLot model;
     private SettingsFrame view;
 
@@ -32,6 +44,7 @@ public class SettingsController {
         this.model = model;
         this.view = view;
         loadCurrSettings();
+        view.addSaveSettingsListener(new saveSettingsListener());
     }
 
     void showSettings() {
@@ -53,4 +66,61 @@ public class SettingsController {
         view.setCloseAt(model.getClosingTime());
         view.setMinCash(model.getMinCash());
     }
+
+    private void saveNewSettings() throws TransformerException {
+        model.setName(view.getNameField().getText());
+        model.setAddress(view.getAddressTextArea().getText());
+        model.setTelephone(view.getTelephoneField().getText());
+        model.setSlogan(view.getSloganTextArea().getText());
+        model.setCompanyID(view.getCompanyIDField().getText());
+        model.setHourlyRate(Float.parseFloat(view.getHourlyRateField().getText()));
+        model.setMinCash(Float.parseFloat(view.getMinCashField().getText()));
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+            model.setOpenningTime(formatter.parse(view.getOpenFromField().getText()));
+            model.setClosingTime(formatter.parse(view.getCloseAtField().getText()));
+        } catch (ParseException ex) {
+        }
+        XMLDataStorage.getInstance().saveParkingLotInfo(model);
+    }
+
+    class saveSettingsListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if (isNumeric(view.getHourlyRateField().getText())
+                    && isNumeric(view.getMinCashField().getText())) {
+                if (isDayTime(view.getOpenFromField().getText())
+                        && isDayTime(view.getCloseAtField().getText())) {
+                    try{
+                    saveNewSettings();}
+                    catch(Exception e){}
+                } else {
+                    view.displayMessage(WRONG_DAYTIME_FORMAT);
+                }
+            } else {
+                view.displayMessage(WRONG_NUMBER_FORMAT);
+            }
+        }
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+        } catch (NumberFormatException foo) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isDayTime(String str) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+            formatter.parse(str);
+        } catch (ParseException foo) {
+            return false;
+        }
+        return true;
+    }
+
 }

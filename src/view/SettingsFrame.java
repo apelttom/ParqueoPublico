@@ -4,9 +4,11 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -52,12 +54,13 @@ public class SettingsFrame extends javax.swing.JFrame {
         closeAtField = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         minCashField = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        saveSettingsButton = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         companyIDField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Parking Lot Software Assistent");
+        setResizable(false);
 
         jButton1.setText("Close");
         jButton1.setToolTipText("");
@@ -103,7 +106,7 @@ public class SettingsFrame extends javax.swing.JFrame {
 
         minCashField.setText("jTextField4");
 
-        jButton2.setText("Save Changes");
+        saveSettingsButton.setText("Save Changes");
 
         jLabel9.setText("Company ID");
 
@@ -163,7 +166,7 @@ public class SettingsFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(saveSettingsButton)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -211,7 +214,7 @@ public class SettingsFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(saveSettingsButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -257,13 +260,49 @@ public class SettingsFrame extends javax.swing.JFrame {
             }
         });
     }
+
+    public JTextArea getAddressTextArea() {
+        return addressTextArea;
+    }
+
+    public JFormattedTextField getCloseAtField() {
+        return closeAtField;
+    }
+
+    public JTextField getCompanyIDField() {
+        return companyIDField;
+    }
+
+    public JTextField getHourlyRateField() {
+        return hourlyRateField;
+    }
+
+    public JTextField getMinCashField() {
+        return minCashField;
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
+
+    public JFormattedTextField getOpenFromField() {
+        return openFromField;
+    }
+
+    public JTextArea getSloganTextArea() {
+        return sloganTextArea;
+    }
+
+    public JTextField getTelephoneField() {
+        return telephoneField;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea addressTextArea;
     private javax.swing.JFormattedTextField closeAtField;
     private javax.swing.JTextField companyIDField;
     private javax.swing.JTextField hourlyRateField;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -278,9 +317,18 @@ public class SettingsFrame extends javax.swing.JFrame {
     private javax.swing.JTextField minCashField;
     private javax.swing.JTextField nameField;
     private javax.swing.JFormattedTextField openFromField;
+    private javax.swing.JButton saveSettingsButton;
     private javax.swing.JTextArea sloganTextArea;
     private javax.swing.JTextField telephoneField;
     // End of variables declaration//GEN-END:variables
+
+    public void displayMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+
+    public void addSaveSettingsListener(ActionListener listenForSave) {
+        saveSettingsButton.addActionListener(listenForSave);
+    }
 
     public void setParkingLotName(String name) {
         nameField.setText(name);
@@ -297,7 +345,7 @@ public class SettingsFrame extends javax.swing.JFrame {
     public void setSlogan(String slogan) {
         sloganTextArea.setText(slogan);
     }
-    
+
     public void setCompanyID(String companyID) {
         companyIDField.setText(companyID);
     }
@@ -317,6 +365,6 @@ public class SettingsFrame extends javax.swing.JFrame {
     }
 
     public void setMinCash(float minCashToOpenParkingLot) {
-         minCashField.setText(Float.toString(minCashToOpenParkingLot));
+        minCashField.setText(Float.toString(minCashToOpenParkingLot));
     }
 }
