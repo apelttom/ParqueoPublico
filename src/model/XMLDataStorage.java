@@ -327,7 +327,7 @@ public class XMLDataStorage {
                 eDescription.appendChild(newDoc.createTextNode(""));
             eParkingSpot.appendChild(eDescription);
             
-            Element eOcuppied = newDoc.createElement("ocuppied");
+            Element eOcuppied = newDoc.createElement("occupied");
             eOcuppied.appendChild(newDoc.createTextNode(String.valueOf(pParkingSpot.isOccupied())));
             eParkingSpot.appendChild(eOcuppied);
             
@@ -359,8 +359,6 @@ public class XMLDataStorage {
                 eExitTime.appendChild(newDoc.createTextNode(datetimeFormatter.format(pCar.getExitTime())));
             eCar.appendChild(eExitTime);
             }
-            else
-                eCar.appendChild(newDoc.createTextNode(""));
             eParkingSpot.appendChild(eCar);
             
             eParkingSpotList.appendChild(eParkingSpot);

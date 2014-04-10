@@ -1,22 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Instituto Tecnologico de Costa Rica
-Escuela de Ingenieria en Computacion
-
-Curso: IC-2101 Programacion Orientada a Objetos
-Profesor: Mauricio Aviles Cisneros
-I Semestre 2014
-
-Laboratorio N°2
-
-ParkingLotInfo.xml
-Creado a las 16:06:51 del 09/03/2014
-Copyright (c) 2014, Adrian Rodriguez Villalobos <adrian.rov@gmail.com>
-Todos los derechos reservados.
--->
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ParkingLot>
-    <name>Insert random name here</name>
+    <name>Parqueo Morazán</name>
     <address>Insert random address here</address>
     <telephone>Insert random telephone here</telephone>
     <slogan>Insert random slogan here</slogan>
@@ -32,25 +16,48 @@ Todos los derechos reservados.
     </cashDesk>
     <parkingSpotList>
         <parkingSpot id="1">
-            <description></description>
+            <description/>
             <occupied>false</occupied>
-            <car></car>
+            <car/>
         </parkingSpot>
         <parkingSpot id="2">
-            <description></description>
-            <occupied>true</occupied>
-            <car>
-                <licensePlate>KFJ354</licensePlate>
-                <color>green</color>
-                <brand>Hyundai</brand>
-                <model>Excel</model>
-                <entryTime>05/04/2014 07:31:46</entryTime>
-                <exitTime></exitTime>
-            </car>
+            <description/>
+            <occupied>false</occupied>
+            <car/>
+        </parkingSpot>
+        <parkingSpot id="3">
+            <description/>
+            <occupied>false</occupied>
+            <car/>
+        </parkingSpot>
+        <parkingSpot id="4">
+            <description/>
+            <occupied>false</occupied>
+            <car/>
+        </parkingSpot>
+        <parkingSpot id="5">
+            <description/>
+            <occupied>false</occupied>
+            <car/>
+        </parkingSpot>
+        <parkingSpot id="6">
+            <description/>
+            <occupied>false</occupied>
+            <car/>
+        </parkingSpot>
+        <parkingSpot id="7">
+            <description/>
+            <occupied>false</occupied>
+            <car/>
+        </parkingSpot>
+        <parkingSpot id="8">
+            <description/>
+            <occupied>false</occupied>
+            <car/>
         </parkingSpot>
     </parkingSpotList>
     <receiptHistory>
-        <receipt id="0001">
+        <receipt id="1">
             <date>05/04/2014</date>
             <car>
                 <licensePlate>ABC123</licensePlate>
@@ -62,7 +69,7 @@ Todos los derechos reservados.
             </car>
             <cost>5555.5</cost>
         </receipt>
-        <receipt id="0002">
+        <receipt id="2">
             <date>05/04/2014</date>
             <car>
                 <licensePlate>JFH645</licensePlate>
